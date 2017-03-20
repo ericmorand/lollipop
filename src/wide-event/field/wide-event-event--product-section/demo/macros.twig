@@ -1,0 +1,20 @@
+{% macro render(field) %}
+    {% set items = [] %}
+    
+    {% import "../../../paragraph/wide-event-product-section/demo/macros.twig" as paragraphMacros %}
+    
+    {% for item in field.items %}
+        {% set items = items|merge([{
+        content: paragraphMacros.render(item),
+        id: item.bundle() ~ '_' ~ item.id(),
+        title: 'test'
+        }]) %}
+    {% endfor %}
+    
+    {% include "../field--node--field-product-section--wide-event-event.html.twig" with {
+    attributes: field.attributes,
+    paragraph: field,
+    show_section_links: field.show_section_links,
+    sections: field.sections
+    } %}
+{% endmacro %}

@@ -1,0 +1,20 @@
+$breakpoint--xxs: 0px;
+$breakpoint--xs: 640px;
+$breakpoint--sm: 768px;
+$breakpoint--sm-md: 990px;
+$breakpoint--md: 1024px;
+$breakpoint--lg: 1200px;
+
+$breakpoints: (
+        $breakpoint--xxs,
+        $breakpoint--xs,
+        $breakpoint--sm,
+        $breakpoint--sm-md,
+        $breakpoint--md,
+        $breakpoint--lg
+);
+
+// bootstrap breakpoints mapping
+$screen-xs-min: $breakpoint--xs;
+$screen-sm-min: $breakpoint--sm-md;
+$screen-md-min: $breakpoint--lg;

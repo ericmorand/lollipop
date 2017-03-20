@@ -1,0 +1,29 @@
+{% set layout = paragraph.field_flash_sale_p_orientation[0].value == 'image_left' ? "inverted" : "regular" %}
+
+{% import _self as this %}
+
+{% macro imageBlock(content, layout) %}
+    <div class="about-watch-img {{ layout }}" data-aos="fade-{{ layout == "inverted" ? "left" : "right" }}">
+        <div class="about-watch-content">
+            {{ content.field_flash_sale_p_image[0] }}
+        </div>
+    </div>
+{% endmacro %}
+
+<div class="wide-flash-sale--paragraph--flash-sale-description {{ layout }}">
+    {% if (layout == "regular") %}
+        {{ this.imageBlock(content, layout) }}
+    {% endif %}
+    
+    <div class="about-watch-txt {{ layout }}" data-aos="fade">
+        <div class="about-watch-content">
+            <h3>{{ content.field_flash_sale_p_title }}</h3>
+            {{ content.field_flash_sale_p_text }}
+        </div>
+    </div>
+    
+    {% if (layout == "inverted") %}
+        {{ this.imageBlock(content, layout) }}
+    {% endif %}
+    <div class="clearer"></div>
+</div>

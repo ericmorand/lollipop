@@ -1,0 +1,18 @@
+{% macro render(paragraph) %}
+    {% set content = "" %}
+    {% set attributes = paragraph.attributes %}
+    
+    {#tag#}
+    {% import "../../../field/wide-event-product-section--tag/demo/macros.twig" as titleMacros  %}
+    {% set content = content ~ titleMacros.render(paragraph.tag) %}
+    
+    {#title#}
+    {% import "../../../field/wide-event-product-section--title/demo/macros.twig" as titleMacros %}
+    {% set content = content ~ titleMacros.render(paragraph.title) %}
+    
+    {#product#}
+    {% import "../../../field/wide-event-product-section--product/demo/macros.twig" as titleMacros %}
+    {% set content = content ~ titleMacros.render(paragraph.product) %}
+    
+    {% include '../index.twig' %}
+{% endmacro %}

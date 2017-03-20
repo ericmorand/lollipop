@@ -1,0 +1,31 @@
+@import "../index";
+
+.node--wide-event-event--demo {
+  @import "../../../field/wide-event-event--body/demo/inner";
+  @import "../../../field/wide-event-event--product-section/demo/inner";
+
+  .test {
+    background: tomato;
+    height: 200px;
+  }
+
+  .test2 {
+    background: yellow;
+    height: 400px;
+  }
+
+  &--section {
+    padding: 40px;
+    border-bottom: solid 1px #ccc;
+
+    h1 {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 16px;
+    }
+  }
+
+  &--inner {
+    border: solid 5px #ccc;
+  }
+}

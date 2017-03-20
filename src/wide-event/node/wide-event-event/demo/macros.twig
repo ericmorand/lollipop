@@ -1,0 +1,17 @@
+{% macro render(node) %}
+    {% set content = "" %}
+    
+    {#field - body#}
+    {% import "../../../field/wide-event-event--body/demo/macros.twig" as fieldBodyMacros %}
+    {% set content = content ~ fieldBodyMacros.render(node.fields.body[0]) %}
+    
+    {#field - product-section#}
+    {% import "../../../field/wide-event-event--product-section/demo/macros.twig" as fieldProductSectionMacros %}
+    {% set content = content ~ fieldProductSectionMacros.render(node.fields.productSection[0]) %}
+    
+    {% include "../index.twig" with {
+    attributes: node.attributes,
+    page: node.page,
+    label: node.label
+    } %}
+{% endmacro %}

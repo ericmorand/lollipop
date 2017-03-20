@@ -1,0 +1,78 @@
+{% set commerce = check_commerce() %}
+{% set current_language = get_current_language() %}
+{% set price = get_price(sku_nid) %}
+
+<article{{ attributes.addClass("node--flash-sale") }}>
+    
+    {% if display_submitted %}
+        <footer>
+            {{ author_picture }}
+            <div{{ author_attributes }}>
+                {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+                {{ metadata }}
+            </div>
+        </footer>
+    {% endif %}
+    
+    <div{{ content_attributes }}>
+        
+        {# HEADER #}
+        
+        {{ file_url(node.field_flash_sale_background.entity.uri.value) }}
+        <h1>{{ label }}</h1>
+        
+        <p>Left</p>
+        {{ content.field_flash_sale_subtitle }}
+        {{ content.field_flash_sale_description }}
+        
+        <p>Center</p>
+        {{ content.field_flash_sale_main_image }}
+        
+        <p>Right</p>
+        {{ content.field_flash_sale_hashtag }}
+        {{ content.field_flash_sale_right_desc }}
+        {%- if commerce == 'available-online' and price.availability == 'AVAILABLE' -%}
+            <a class="btn dark available" role="button" href="/{{ current_language }}/checkout/cart?product={{ node.field_flash_sale_sku.value }}">{{ translate('Shop now') }}</a>
+        {% endif %}
+        {%- if price.price -%}
+            <p class="price">{{ price.price|replace({'CHF':'CHF '}) }}</p>
+        {% endif %}
+        
+        <p>Images</p>
+        {{ content.field_flash_sale_images }}
+        
+        
+        
+        {# VIDEO #}
+        {{ content.field_flash_sale_video }}
+        
+        
+        
+        {# DESCRIPTION #}
+        {{ file_url(node.field_flash_sale_desc_background.entity.uri.value) }}
+        {{ content.field_flash_sale_product_desc }}
+        
+        
+        
+        {# FOOTER #}
+        
+        <p>Left</p>
+        {{ content.field_flash_sale_main_image }}
+        
+        <p>Center</p>
+        {{ content.field_flash_sale_hashtag }}
+        {{ content.field_flash_sale_right_desc }}
+        {%- if commerce == 'available-online' and price.availability == 'AVAILABLE' -%}
+            <a class="btn dark available" role="button" href="/{{ current_language }}/checkout/cart?product={{ node.field_flash_sale_sku.value }}">{{ translate('Shop now') }}</a>
+        {% endif %}
+        {%- if price.price -%}
+            <p class="price">{{ price.price|replace({'CHF':'CHF '}) }}</p>
+        {% endif %}
+        
+        <p>Right</p>
+        {{ content.field_flash_sale_footer_title }}
+        {{ content.field_flash_sale_footer_text }}
+    </div>
+
+</article>
+

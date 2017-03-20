@@ -1,0 +1,26 @@
+@import "../../../global/color/variables";
+@import "../../../global/font/variables";
+@import "../../../global/index";
+@import "../../../global/typography/index";
+
+.field--wide-event-event--body {
+  $margin-padding-body: 30px;
+
+  text-align: left;
+
+  h2 {
+    text-align: left;
+    color: $secondaryDark;
+
+    em {
+      color: $primaryRed;
+      font-style: normal;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .event-body-inner {
+      padding: $margin-padding-body;
+    }
+  }
+}

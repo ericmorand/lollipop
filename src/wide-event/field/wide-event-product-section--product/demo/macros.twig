@@ -1,0 +1,17 @@
+{% macro render(field) %}
+    {% import _self as this %}
+    
+    {% set items = [] %}
+    
+    {% for item in field.items %}
+        {% set items = items|merge([{content: this.renderItem(item)}]) %}
+    {% endfor %}
+    
+    {% include '../index.twig' with {
+    attributes: field.attributes
+    } %}
+{% endmacro %}
+
+{% macro renderItem(item) %}
+    {% include "./templates/watch.html" %}
+{% endmacro %}

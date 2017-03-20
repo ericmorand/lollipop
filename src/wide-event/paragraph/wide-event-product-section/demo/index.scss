@@ -1,0 +1,6 @@
+@import "../index";
+@import "../../../field/wide-event-product-section--product/demo/mixins";
+
+.paragraph--wide-event-product-section--demo {
+  @include field--wide-event-product-section--product--demo();
+}

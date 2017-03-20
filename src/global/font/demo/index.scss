@@ -1,0 +1,48 @@
+@import "../index";
+@import "../mixins";
+
+.global--font--demo {
+  padding: 1em;
+
+  .primary {
+    @include PrimaryFont;
+  }
+
+  &--font {
+    > .title {
+      border-bottom: solid 1px #ccc;
+      margin-bottom: 2em;
+
+      > h1 {
+        margin: 0;
+        line-height: 1.25em;
+      }
+
+      > code {
+        line-height: 2.25em;
+      }
+    }
+  }
+
+  &--sample {
+    padding: 0 1em;
+    margin-bottom: 4em;
+    box-sizing: border-box;
+
+    > .title {
+      font-style: normal;
+      text-align: left;
+      border-bottom: solid 1px #ccc;
+      padding-bottom: 0.5em;
+
+      code {
+        font-style: normal;
+        font-weight: normal;
+      }
+    }
+
+    > span {
+      font-size: 2em;
+    }
+  }
+}

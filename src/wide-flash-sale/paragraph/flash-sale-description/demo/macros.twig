@@ -1,0 +1,26 @@
+{% macro render(paragraph) %}
+    {% set content = {
+    field_flash_sale_p_title: paragraph.title
+    } %}
+    
+    {% macro renderImage(src) %}
+        {% include "./templates/image.html.twig" with {
+        src: src
+        } %}
+    {% endmacro %}
+    
+    {% macro renderText() %}
+        {% include "./templates/text.html" %}
+    {% endmacro %}
+    
+    {% set content = content|merge({
+    field_flash_sale_p_image: [_self.renderImage(paragraph.image)],
+    field_flash_sale_p_text: _self.renderText()
+    }) %}
+    
+    {% set paragraph = {
+    field_flash_sale_p_orientation: [{value: paragraph.orientation}]
+    } %}
+    
+    {% include '../index.twig' %}
+{% endmacro %}

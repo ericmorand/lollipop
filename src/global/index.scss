@@ -1,0 +1,29 @@
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "./color/variables";
+@import "./breakpoint/variables";
+@import "./grid/variables";
+
+$padding-top-xl: 60px;
+
+//.block {
+//  padding-top: $padding-top-xl/2;
+//  &:first-child {
+//    padding-top: 0;
+//  }
+//  .title-tag,
+//  h2 {
+//    text-transform: uppercase;
+//  }
+//  .title-tag {
+//    color: $primaryRed;
+//    margin: 0;
+//  }
+//}
+//
+//
+//@media (min-width: 1024px) {
+//  .block {
+//    padding-top: $padding-top-xl;
+//  }
+//}

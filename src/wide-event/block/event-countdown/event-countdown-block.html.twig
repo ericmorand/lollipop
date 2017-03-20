@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an event countdown block.
+ *
+ * Available variables:
+ * - current_timestamp: The block current date in the form of a timestamp.
+ * - end_timestamp: The block end date in the form of a timestamp.
+ * - start_timestamp: The block start date in the form of a timestamp.
+ * - event: The event.
+ *   - body: The body of the event.
+ *   - title: The title of the event.
+ *   - date_range: The event date range date in the form of a string.
+ * - label: The configured label of the block if visible.
+ *
+ * @see template_preprocess_event_countdown_block()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="block--event-countdown">
+    <section class="header-particles">
+        <div class="webgl-container">
+            <canvas class="webgl-canvas"></canvas>
+        </div>
+        <h1>{{ event.title }}</h1>
+        <div class="header-particles-count">
+            <div class="line-count baselCount" data-start-date="{{ start_timestamp }}"
+                 data-end-date="{{ end_timestamp }}" data-current-date="{{ current_timestamp }}">
+                <div class="days">
+                    <div class="nmbr"></div>
+                    <span class="txt">{{ "days"|t }}</span>
+                </div>
+                <div class="hours">
+                    <div class="nmbr"></div>
+                    <span class="txt">{{ "hrs"|t }}</span>
+                </div>
+                <div class="mins">
+                    <div class="nmbr"></div>
+                    <span class="txt">{{ "mins"|t }}</span>
+                </div>
+                <div class="secs">
+                    <div class="nmbr"></div>
+                    <span class="txt">{{ "secs"|t }}</span>
+                </div>
+            </div>
+            <div class="line-date">
+                <span class="txt"><span class="line left"></span>{{ event.date_range }}<span class="line right"></span></span>
+            </div>
+        </div>
+    </section>
+</div>
