@@ -1,0 +1,151 @@
+#frameBoxWrapper {
+  z-index: 99997;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#frameBoxWrapper .frameBoxBackground {
+  z-index: 99998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-color: #000;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  filter: alpha(opacity=90);
+  opacity: 0.90;
+}
+#frameBoxWrapper .frameBoxContent {
+  z-index: 99999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 25px auto 100px 0;
+  background-color: #111;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.6);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.6);
+}
+#frameBoxWrapper .frameBoxBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 50px;
+  background: #000;
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.6);
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.6);
+}
+#frameBoxWrapper .frameBoxBar .blockOptions {
+  position: absolute;
+  height: 30px;
+  width: auto;
+  right: 6px;
+  top: 10px;
+}
+#frameBoxWrapper .frameBoxBar .blockOptions span {
+  display: inline-block;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin: 0 3px;
+  background: url('../images/frameboxPictos.png') left top no-repeat;
+}
+#frameBoxWrapper .frameBoxBar .blockOptions span.optionFullscreen {
+  background-position: 0px -120px;
+}
+#frameBoxWrapper .frameBoxBar .blockOptions span.optionClose {
+  background-position: 0px 0px;
+}
+#frameBoxWrapper .frameBoxBar .blockNav {
+  position: absolute;
+  height: 30px;
+  width: 112px;
+  left: 50%;
+  margin-left: -56px;
+  top: 10px;
+}
+#frameBoxWrapper .frameBoxBar .blockNav span {
+  display: inline-block;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin: 0 13px;
+  background: url('../images/frameboxPictos.png') left top no-repeat;
+}
+#frameBoxWrapper .frameBoxBar .blockNav span.btnNext {
+  background-position: 0px -160px;
+}
+#frameBoxWrapper .frameBoxBar .blockNav span.btnPrev {
+  background-position: 0px -200px;
+}
+#frameBoxWrapper #frameboxLoader {
+  position: absolute;
+  z-index: 100000;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+#frameBoxWrapper .frameBoxContentInfos {
+  background:rgba(255, 255, 255, 0.6);
+  position:relative;
+  margin-top:-60px;
+  height:60px;
+}
+#frameBoxWrapper .frameBoxContentInfos h2 {
+  font-family: Arial,Helvetica,sans-serif!important;
+  margin:0 10px 10px 0;
+  font-size:13px;
+  font-weight:500;
+  padding:10px 10px 0;
+  color:#187ec0;
+  display:block;
+}
+#frameBoxWrapper .frameBoxContentInfos p {
+  font-family: Arial,Helvetica,sans-serif!important;
+  margin:0;
+  padding:0 10px 10px;
+  font-size:13px;
+  font-weight:500;
+  color:#666;
+  display:block;
+  float:left;
+  margin:7px 0 0 0;
+}
+#frameBoxWrapper .frameBoxContentInfos p.fbDate {
+  font-family: Arial,Helvetica,sans-serif!important;
+  margin:0;
+  font-size:13px;
+  font-weight:500;
+  color:#666;
+  display:block;
+  float:left;
+  margin:7px 0 0 0;
+}
+#frameBoxWrapper .frameBoxContentInfos p.fbCredits, #frameBoxWrapper .frameBoxContentInfos p.fbPlace, #frameBoxWrapper .frameBoxContentInfos p.fbDownload {
+  font-family: Arial,Helvetica,sans-serif!important;
+  margin:0;
+  font-size:13px;
+  font-weight:500;
+  color:#666;
+  display:block;
+  position:absolute;
+}
+#frameBoxWrapper .frameBoxContentInfos p.fbCredits { top:10px; right:10px; }
+#frameBoxWrapper .frameBoxContentInfos p.fbPlace { bottom:10px; left:10px; }
+#frameBoxWrapper .frameBoxContentInfos p.fbDownload { bottom:10px; right:10px; }
+
+/* VIDEO */
+#frameBoxWrapper {
+  overflow:auto;
+  min-width:260px;
+}
+#frameBoxWrapper video + .frameBoxContentInfos {
+  margin-top:0px;
+  background:#fff;
+}

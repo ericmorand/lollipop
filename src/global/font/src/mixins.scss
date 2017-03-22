@@ -2,6 +2,10 @@
   font-family: ProximaNova, Arial, sans-serif;
 }
 
+@mixin SecondaryFont() {
+  font-family: FuturaLT, Arial, sans-serif;
+}
+
 @mixin NoSpaceFont() {
   font-family: NoSpace, Arial, sans-serif;
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ demo.title }}</title>
+    <link rel="stylesheet"
+          href="https://www.tagheuer.com/themes/custom/sapient_classy/css/tag_css/sapient.ver.1.0.0.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body class="{{ demo.class }}">
+<div>
+    {% import _self as this %}
+    
+    {% macro image(src) %}
+        <img src="{{ src }}">
+    {% endmacro %}
+    
+    {% include '../src/index.twig' with {
+    field_name: 'flash-sale-close-up-image',
+    items: [
+    {
+    content: this.image(items[0].image.src),
+    attributes: items[0].attributes,
+    },
+    {
+    content: this.image(items[1].image.src),
+    attributes: items[1].attributes
+    },
+    {
+    content: this.image(items[2].image.src),
+    attributes: items[2].attributes
+    }
+    ]
+    } %}
+</div>
+<script src="../js/index.js"></script>
+</body>
+</html>

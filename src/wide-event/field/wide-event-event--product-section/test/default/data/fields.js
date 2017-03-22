@@ -1,4 +1,4 @@
-const Attributes = require('../../../../../../drupal/attributes');
+const Attributes = require('drupal-attribute');
 
 let items = require('../../../../../paragraph/wide-event-product-section/test/default/data/paragraphs');
 

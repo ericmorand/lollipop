@@ -20,6 +20,21 @@
   src: url('./assets/fonts/ProximaNova/311679_8_0.eot?#iefix') format('embedded-opentype'), url('./assets/fonts/ProximaNova/311679_8_0.woff2') format('woff2'), url('./assets/fonts/ProximaNova/311679_8_0.woff') format('woff'), url('./assets/fonts/ProximaNova/311679_8_0.ttf') format('truetype');
 }
 
+// Futura LT
+@font-face {
+  font-family: 'FuturaLT';
+  font-weight: normal;
+  src: url('./assets/fonts/FuturaLT/FuturaLTMedium.eot');
+  src: url('./assets/fonts/FuturaLT/FuturaLTMedium.eot?#iefix') format('embedded-opentype'), url('./assets/fonts/FuturaLT/FuturaLTMedium.woff2') format('woff2'), url('./assets/fonts/FuturaLT/FuturaLTMedium.woff') format('woff'), url('./assets/fonts/FuturaLT/FuturaLTMedium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'FuturaLT';
+  font-weight: 700;
+  src: url('./assets/fonts/FuturaLT/FuturaLTBold.eot');
+  src: url('./assets/fonts/FuturaLT/FuturaLTBold.eot?#iefix') format('embedded-opentype'), url('./assets/fonts/FuturaLT/FuturaLTBold.woff2') format('woff2'), url('./assets/fonts/FuturaLT/FuturaLTBold.woff') format('woff'), url('./assets/fonts/FuturaLT/FuturaLTBold.ttf') format('truetype');
+}
+
 // No Space
 @font-face {
   font-family: 'NoSpace';

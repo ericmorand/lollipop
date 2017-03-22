@@ -2,8 +2,7 @@
 {% set current_language = get_current_language() %}
 {% set price = get_price(sku_nid) %}
 
-<article{{ attributes.addClass("node--flash-sale") }}>
-    
+<article{{ attributes.addClass("wide-flash-sale--node--wide-flash-sale-flash-sale") }}>
     {% if display_submitted %}
         <footer>
             {{ author_picture }}
@@ -15,64 +14,128 @@
     {% endif %}
     
     <div{{ content_attributes }}>
+        <section class="slider-content"
+                 style="background-image: url('{{ file_url(node.field_flash_sale_background.entity.uri.value) }}');">
+            <div>
+                <div class="slider-watch-events">
+                    <div class="slider-watch-events-title">
+                        <h1>{{ label }}</h1>
+                    </div>
+                    <div class="slider-watch-events-info">
+                        {{ content.field_flash_sale_subtitle }}
+                        <span class="slider-watch-details">{{ content.field_flash_sale_description }}</span>
+                    </div>
+                    <a href="{{ file_url(node.field_flash_sale_preview.entity.fileuri) }}" target="_blank">
+                        <div class="slider-watch-image">
+                            <div class="bg">
+                                <div class="clock">
+                                    {{ content.field_flash_sale_main_image }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="slider-watch-shop">
+                        <span class="slider-watch-hashtag">{{ content.field_flash_sale_hashtag }}</span>
+                        <span class="slider-watch-hashtag-text">{{ content.field_flash_sale_right_desc }}</span>
+                        <div class="slider-watch-cart">
+                            {%- if price.price -%}
+                                <span class="slider-watch-price">{{ price.price|replace({'CHF':'CHF '}) }}</span>
+                            {% endif %}
+                            {%- if commerce == 'available-online' and price.availability == 'AVAILABLE' -%}
+                                <a href="/{{ current_language }}/checkout/cart?product={{ node.field_flash_sale_sku.value }}"
+                                   title="{{ translate("Add to cart") }}" class="event-watch-cart-btn">
+                                    <span>{{ translate("Shop now") }}</span>
+                                </a>
+                            {% endif %}
+                            <span class="slider-watch-shipping">*shipping costs and taxes included</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        {# HEADER #}
+        <section class="closeup-watch">
+            {{ content.field_flash_sale_images }}
+        </section>
         
-        {{ file_url(node.field_flash_sale_background.entity.uri.value) }}
-        <h1>{{ label }}</h1>
+        <section class="video-watch">
+            <div class="field-video">
+                <div>
+                    <div class="title">
+                        <h2>{{ 'Video'|t }}</h2>
+                    </div>
+                    <div class="video-watch-wrapper" data-aos="fade">
+                        {{ content.field_flash_sale_video }}
+                        <div class="video-watch-btnplay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        <p>Left</p>
-        {{ content.field_flash_sale_subtitle }}
-        {{ content.field_flash_sale_description }}
+        <section class="about-watch"
+                 style="background: url('{{ file_url(node.field_flash_sale_desc_background.entity.uri.value) }}')">
+            {{ content.field_flash_sale_product_desc }}
+        </section>
         
-        <p>Center</p>
-        {{ content.field_flash_sale_main_image }}
-        
-        <p>Right</p>
-        {{ content.field_flash_sale_hashtag }}
-        {{ content.field_flash_sale_right_desc }}
-        {%- if commerce == 'available-online' and price.availability == 'AVAILABLE' -%}
-            <a class="btn dark available" role="button" href="/{{ current_language }}/checkout/cart?product={{ node.field_flash_sale_sku.value }}">{{ translate('Shop now') }}</a>
-        {% endif %}
-        {%- if price.price -%}
-            <p class="price">{{ price.price|replace({'CHF':'CHF '}) }}</p>
-        {% endif %}
-        
-        <p>Images</p>
-        {{ content.field_flash_sale_images }}
-        
-        
-        
-        {# VIDEO #}
-        {{ content.field_flash_sale_video }}
-        
-        
-        
-        {# DESCRIPTION #}
-        {{ file_url(node.field_flash_sale_desc_background.entity.uri.value) }}
-        {{ content.field_flash_sale_product_desc }}
-        
-        
-        
-        {# FOOTER #}
-        
-        <p>Left</p>
-        {{ content.field_flash_sale_main_image }}
-        
-        <p>Center</p>
-        {{ content.field_flash_sale_hashtag }}
-        {{ content.field_flash_sale_right_desc }}
-        {%- if commerce == 'available-online' and price.availability == 'AVAILABLE' -%}
-            <a class="btn dark available" role="button" href="/{{ current_language }}/checkout/cart?product={{ node.field_flash_sale_sku.value }}">{{ translate('Shop now') }}</a>
-        {% endif %}
-        {%- if price.price -%}
-            <p class="price">{{ price.price|replace({'CHF':'CHF '}) }}</p>
-        {% endif %}
-        
-        <p>Right</p>
-        {{ content.field_flash_sale_footer_title }}
-        {{ content.field_flash_sale_footer_text }}
+        <section class="shop-watch">
+            <div>
+                <div>
+                    <div class="shop-watch-img-cta">
+                        <div>
+                            <div class="shop-watch-img" data-aos="fade-up">
+                                <div class="shop-watch-content">
+                                    {{ content.field_flash_sale_main_image }}
+                                </div>
+                            </div>
+                            <div class="shop-watch-cta" data-aos="fade-down">
+                                <div class="shop-watch-content">
+                                    <span class="slider-watch-hashtag">{{ content.field_flash_sale_hashtag }}</span>
+                                    <span class="slider-watch-hashtag-text">{{ content.field_flash_sale_right_desc }}</span>
+                                    <div class="slider-watch-cart">
+                                        {%- if price.price -%}
+                                            <span class="slider-watch-price">{{ price.price|replace({'CHF':'CHF '}) }}</span>
+                                        {% endif %}
+                                        {%- if commerce == 'available-online' and price.availability == 'AVAILABLE' -%}
+                                            <a href="/{{ current_language }}/checkout/cart?product={{ node.field_flash_sale_sku.value }}"
+                                               title="{{ "Add to cart"|t }}" class="event-watch-cart-btn">
+                                                <span>{{ translate("Shop now") }}</span>
+                                            </a>
+                                            <span class="slider-watch-shipping">{{ translate("*shipping costs and taxes included") }}</span>
+                                        {% endif %}
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="terms-of-sale">
+                        <div>
+                            <div class="shop-watch-terms" data-aos="fade">
+                                <div class="shop-watch-content">
+                                    <h3>{{ content.field_flash_sale_footer_title }}</h3>
+                                    <span>{{ content.field_flash_sale_footer_text }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-
+    
+    <div class="modal fade popin-lang" tabindex="-1" role="dialog" aria-labelledby="lang">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true"></span></button>
+                </div>
+                <div class="modal-body">
+                    {{ popin_flashsale }}
+                </div>
+            </div>
+        </div>
+    </div>
 </article>
 

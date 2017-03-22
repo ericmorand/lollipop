@@ -1,4 +1,4 @@
-const Attributes = require('./attributes');
+const Attributes = require('drupal-attribute');
 
 module.exports = function (twig) {
   // trans
@@ -55,7 +55,7 @@ module.exports = function (twig) {
   });
 
   twig.extendFunction("file_url", function (data) {
-    return data;
+    return 'http://' + data;
   });
 
   twig.extendFunction("translate", function (data) {

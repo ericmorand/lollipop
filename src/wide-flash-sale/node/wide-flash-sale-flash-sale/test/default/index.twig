@@ -10,7 +10,25 @@
 </head>
 <body class="{{ demo.class }}">
 <div>
-    {% include '../../src/index.twig' %}
+    {% for fixture in fixtures %}
+        <div class="{{ demo.class }}--fixture">
+            <h1>{{ fixture.title }}</h1>
+            <div>
+                {% import _self as this %}
+                
+                {% macro renderVideoSample() %}
+                    {% include "./data/templates/field_flash_sale_video.html" %}
+                {% endmacro %}
+                
+                {#{% set content = fixture.content|merge({#}
+                {#field_flash_sale_video: this.renderVideoSample()#}
+                {#}) %}#}
+                
+                {% include '../../src/index.twig' with fixture %}
+            </div>
+        </div>
+    {% endfor %}
 </div>
+<script src="../js/index.js"></script>
 </body>
 </html>
