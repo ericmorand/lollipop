@@ -2,4 +2,12 @@
 
 .node--wide-event-event--demo {
   background: tomato;
+  padding: 100px;
+
+  &:before {
+    content: "Padding added for demonstration purpose";
+    display: block;
+    position: absolute;
+    top: 50px;
+  }
 }
