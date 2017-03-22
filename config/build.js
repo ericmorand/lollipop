@@ -22,7 +22,7 @@ module.exports = {
       module: require('stromboli-plugin-javascript'),
       config: jsConfig,
       entry: 'index.js',
-      output: 'wide-event.js'
+      output: 'wide.js'
     },
     css: {
       module: require('stromboli-plugin-sass'),
@@ -31,7 +31,7 @@ module.exports = {
         sourceComments: false
       }),
       entry: 'index.scss',
-      output: 'wide-event.css'
+      output: 'wide.css'
     },
     html: {
       module: require('stromboli-plugin-twig'),
@@ -42,7 +42,8 @@ module.exports = {
   postcss: {
     plugins: [
       require('cssnano')({
-        discardDuplicates: true
+        discardDuplicates: true,
+        zindex: false // https://github.com/ben-eb/gulp-cssnano/issues/8
       }),
       require('postcss-copy')({
         src: path.resolve('.'),

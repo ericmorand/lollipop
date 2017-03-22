@@ -1,0 +1,26 @@
+@import "../../src/index";
+@import "../../src/variables";
+@import "../../../../../node_modules/rtl-sass/src/rtl";
+
+.breakpoint-demo {
+  padding: 0;
+  margin: 0;
+
+  .test {
+    height: 100vh;
+    @include rtl-sass-float(left);
+    background-size: contain;
+
+    @each $breakpoint in $breakpoints {
+      @include breakpoint(min-width $breakpoint) {
+        background-image: url("http://placehold.it/1920x1080/ffffff/123456?text=#{$breakpoint}");
+      }
+    }
+  }
+
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
+  }
+}

@@ -1,0 +1,15 @@
+@import "../../src/index";
+
+.global--grid--demo {
+  @include make-row();
+
+  &--block {
+    height: 150px;
+    @include make-md-column(1);
+
+    &--inner {
+      height: 100%;
+      text-align: center;
+    }
+  }
+}

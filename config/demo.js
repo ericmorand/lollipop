@@ -6,7 +6,7 @@ jsConfig.debug = true;
 
 module.exports = {
   componentRoot: 'src',
-  componentManifest: 'demo.json',
+  componentManifest: 'test.json',
   plugins: {
     css: {
       module: require('stromboli-plugin-sass'),

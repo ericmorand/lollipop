@@ -1,0 +1,25 @@
+@import "../../../../global/color/src/variables";
+
+.field--wide-event-event--livestream {
+  > a {
+    color: $white;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 350ms ease-out;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background: $primaryRed;
+    width: auto;
+    border: solid 1px transparent;
+
+    &:hover {
+      background: $white;
+      color: $primaryRed;
+      border-color: $primaryRed;
+    }
+  }
+}

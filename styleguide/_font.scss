@@ -26,3 +26,8 @@ $fontWeights: (
     }
   }
 }
+
+@font-face {
+  font-family: "NoSpace";
+  src: url("./assets/fonts/NoSpace/zerowidthspaces.ttf") format("truetype");
+}

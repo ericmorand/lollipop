@@ -1,0 +1,14 @@
+@import "../../../../global/index";
+
+.field--wide-event-product-section--product {
+  .views-infinite-scroll-content-wrapper {
+    background: none;
+
+    .product-tile {
+      @include make-xs-column(24);
+      @include make-sm-column(12);
+      @include make-md-column(8);
+      @include make-lg-column(6);
+    }
+  }
+}

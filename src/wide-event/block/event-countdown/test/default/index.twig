@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ demo.title }}</title>
+    <link rel="stylesheet"
+          href="https://www.tagheuer.com/themes/custom/sapient_classy/css/tag_css/sapient.ver.1.0.0.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body class="{{ demo.class }}">
+<div>
+    {% for block in blocks %}
+        <div class="{{ demo.class }}--block-section">
+            <div class="{{ demo.class }}--block-wrapper">
+                {% include '../../src/index.twig' with {
+                event: block.event,
+                start_timestamp: block.start_timestamp,
+                end_timestamp: block.end_timestamp,
+                current_timestamp: block.currentTimestamp
+                } %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<script src="../js/index.js"></script>
+</body>
+</html>

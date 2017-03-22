@@ -1,0 +1,11 @@
+@import "../../src/index";
+
+.wide-livestream--field--wide-livestream-livestream-body--demo {
+  &--fixture {
+    padding: 1em;
+
+    h1 {
+      border-bottom: solid 3px #ccc;
+    }
+  }
+}

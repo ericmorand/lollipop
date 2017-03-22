@@ -1,0 +1,7 @@
+@import "../default/index";
+
+.global--font--demo {
+  .primary {
+    @include PrimaryFont;
+  }
+}

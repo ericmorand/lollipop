@@ -1,0 +1,1 @@
+require('../../../../field/wide-event-event--product-section/src');

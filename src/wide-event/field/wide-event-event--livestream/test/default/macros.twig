@@ -1,0 +1,15 @@
+{% macro render(field) %}
+    {% set items = [] %}
+    
+    {% for item in field.items %}
+        {% set items = items|merge([{content: _self.renderLivestream(item)}]) %}
+    {% endfor %}
+    
+    {% include '../../src/index.twig' with {
+    attributes: field.attributes
+    } %}
+{% endmacro %}
+
+{% macro renderLivestream(item) %}
+    {% include "./data/livestream.html" %}
+{% endmacro %}

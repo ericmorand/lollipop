@@ -1,0 +1,92 @@
+@import "../../../../../node_modules/aos/src/sass/aos";
+@import "../../../../global/index";
+@import "../../../../global/font/src/index";
+@import "../../../../global/font/src/mixins";
+@import "../../../../global/color/src/variables";
+@import "../../../../global/breakpoint/src/index";
+
+@mixin field-article-section_leftBlock() {
+  @include make-xs-column(20);
+  @include make-xs-column-offset(2);
+  @include make-sm-column(10);
+  @include make-sm-column-offset(2);
+}
+
+@mixin field-article-section_rightBlock() {
+  @include make-xs-column(20);
+  @include make-xs-column-offset(2);
+  @include make-sm-column(10);
+  @include make-sm-column-offset(0);
+}
+
+.wide-flash-sale--paragraph--flash-sale-description {
+  @include make-row();
+
+  .about-watch-img {
+    &.regular {
+      @include field-article-section_leftBlock();
+      padding-right: 40px;
+    }
+
+    &.inverted {
+      @include field-article-section_rightBlock();
+      padding-left: 40px;
+    }
+
+    img {
+      min-width: 100%;
+      width: 100%;
+    }
+  }
+
+  .about-watch-txt {
+    &.regular {
+      @include field-article-section_rightBlock();
+    }
+
+    &.inverted {
+      @include field-article-section_leftBlock();
+    }
+
+    h3 {
+      @include PrimaryFont;
+      font-weight: bold;
+      font-size: 2.4em;
+      text-align: left;
+      color: $backgroundDark;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    p {
+      @include PrimaryFont;
+      font-weight: lighter;
+      font-size: 1.6em;
+      color: $backgroundDark;
+    }
+  }
+
+  //@include breakpoint(max-width $breakpoint--xs) {
+  //  display: table;
+  //  padding: 0 8.33333333%;
+  //
+  //  .about-watch-content {
+  //    padding: 0 !important;
+  //  }
+  //
+  //  .about-watch-img {
+  //    display: table-header-group;
+  //    float: none;
+  //    margin-bottom: 40px;
+  //  }
+  //
+  //  .about-watch-txt {
+  //    display: table-footer-group;
+  //    float: none;
+  //
+  //    h3 {
+  //      margin-top: 40px;
+  //    }
+  //  }
+  //}
+}

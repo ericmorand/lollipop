@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ demo.title }}</title>
+    <link rel="stylesheet"
+          href="https://www.tagheuer.com/themes/custom/sapient_classy/css/tag_css/sapient.ver.1.0.0.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body class="{{ demo.class }}">
+{% for fixture in fixtures %}
+    <div class="{{ demo.class }}--fixture">
+        {% for block in fixture.blocks %}
+            <div class="{{ demo.class }}--block">
+                <div class="{{ demo.class }}--block--inner" style="background-color: {{ block.color }}">
+                    {{ block.label }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+<script src="../js/index.js"></script>
+</body>
+</html>
