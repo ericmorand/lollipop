@@ -3,6 +3,8 @@
 
 .node--wide-event-event {
   @include container-fixed();
+  background-color: $white;
+  position: relative;
 
   h1, h2, h3 {
     font-weight: bold;
