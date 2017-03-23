@@ -1,5 +1,6 @@
 @import "../../../../global/color/src/variables";
 @import "../../../../global/index";
+@import "../../../../global/breakpoint/src/index";
 
 .field--wide-event-event--product-section {
   background-color: $backgroundLight;
@@ -7,24 +8,32 @@
 
   .block {
     padding-top: $padding-top-xl/2;
+
+    @media screen and (max-width: 64em) {
+      h2.is_stuck {
+        display: block;
+        width: 100%;
+        position: fixed;
+        z-index: 3;
+        top: 0;
+        margin-bottom: 50px;
+        padding-top: 0.42em;
+      }
+    }
   }
 
   .section-links {
+    display: none;
+
     text-align: center;
-    margin: 0 auto;
     background: #1f1f1f;
     width: 100%;
-    display: block;
     height: 60px;
     margin: 0;
     top: 0;
     text-transform: uppercase;
 
     &.sticky {
-      -webkit-transition: top .3s ease-in-out;
-      -moz-transition: top .3s ease-in-out;
-      -o-transition: top .3s ease-in-out;
-      -ms-transition: top .3s ease-in-out;
       transition: top .3s ease-in-out;
     }
 
@@ -44,9 +53,10 @@
     }
 
     ul {
-      padding: 6px;
+      padding: 10px;
       margin: 0;
       list-style-type: none;
+
       li {
         margin: 0;
         display: inline-block;
@@ -63,29 +73,18 @@
       }
     }
 
-    @media screen and (max-width: 78.125em) {
-      ul {
-        margin: 10px 0 0 0 !important;
-      }
-    }
+    @include breakpoint($breakpoint--md) {
+      display: block;
 
-    @media screen and (max-width: 64em) {
-      display: none;
-    }
-
-    @media screen and (max-width: 100em) and (min-width: 78.125em) {
-      ul {
-        a {
-          font-size: .78571em;
-          padding: 15px 10px;
-        }
-      }
-    }
-
-    @media (min-width: 78.125em) {
       &.sticky {
         position: fixed;
         z-index: 99;
+      }
+    }
+
+    @include breakpoint($screen-md-min) {
+      &.sticky {
+        margin-top: 80px;
       }
     }
   }
