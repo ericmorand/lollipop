@@ -2,7 +2,7 @@
 {% set current_language = get_current_language() %}
 {% set price = get_price(sku_nid) %}
 
-<article{{ attributes.addClass("wide-flash-sale--node--wide-flash-sale-flash-sale") }}>
+<article{{ attributes.addClass("wide-flash-sale--node--wide-flash-sale-flash-sale") }} data-sku="{{ sku_nid }}">
     {% if display_submitted %}
         <footer>
             {{ author_picture }}

@@ -4,6 +4,7 @@
   "description": "Tag Heuer - Design Implementation",
   "author": "Eric MORAND",
   "dependencies": {
+    "ajax-request": "^1.2.1",
     "aos": "^2.1.1",
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
