@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
   let scope = document.querySelector('.page-node-type-flash-sale');
 
   if (scope) {
-    let jQuery = require('jquery');
+    let $ = jQuery = require('jquery');
+
+    require('bootstrap');
+
+    let sku = scope.querySelector('#edit-sku').value;
 
     // fetch the main header language icon
     let languageIcon = scope.querySelector('#main-header .region-icon-menu .icon-nav a.icon-language');
@@ -18,10 +22,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let flashSaleModal = scope.querySelector('.wide-flash-sale--node--wide-flash-sale-flash-sale > .popin-lang');
 
     let openFlashSaleModal = function () {
-      let $ = jQuery = require('jquery');
-
-      require('bootstrap');
-
       // fetch
       $(flashSaleModal).modal();
     };
@@ -77,8 +77,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
     // region hack
     // todo: these things should be done in the back-end
 
-    let sku = scope.querySelector('.wide-flash-sale--node--wide-flash-sale-flash-sale').getAttribute('data-sku');
-
     // fetch if the popin should be displayed
     jQuery.ajax({
       url: '/ws/flashsale/get-sale-config',
@@ -97,8 +95,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
         else {
           refreshProductInformations(sku, config.country, config.language);
         }
-
-        sapientForm.submit();
       }
     });
     // endregion
