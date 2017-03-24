@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   let scope = document.querySelector('.page-node-type-flash-sale');
 
   if (scope) {
-    const request = require('ajax-request');
+    let jQuery = require('jquery');
 
     // fetch the main header language icon
     let languageIcon = scope.querySelector('#main-header .region-icon-menu .icon-nav a.icon-language');
@@ -27,40 +27,41 @@ document.addEventListener('DOMContentLoaded', function (event) {
     };
 
     let refreshProductInformations = function (sku, country, language) {
-      request({
+      jQuery.ajax({
         url: '/ws/flashsale/get-price',
+        type: 'get',
+        dataType: 'json',
+        async: true,
         data: {
           'sku': sku,
           'language': language,
           'country': country
-        }
-      }, function (err, res, body) {
-        // price
-        let data = JSON.parse(body.data);
+        },
+        success: function (data) {
+          let priceScope = scope.querySelector('.slider-watch-price');
 
-        let priceScope = scope.querySelector('.slider-watch-price');
+          if (data.price.price) {
+            priceScope.innerHtml = data.price.price + '*';
+            priceScope.style.display = null;
+          }
+          else {
+            priceScope.style.display = 'none';
+          }
 
-        if (data.price.price) {
-          priceScope.innerHtml = data.price.price + '*';
-          priceScope.style.display = null;
-        }
-        else {
-          priceScope.style.display = 'none';
-        }
+          // shop link
+          let buttonScope = scope.querySelector('.event-watch-cart-btn');
+          let shippingScope = scope.querySelector('.slider-watch-shipping-btn');
 
-        // shop link
-        let buttonScope = scope.querySelector('.event-watch-cart-btn');
-        let shippingScope = scope.querySelector('.slider-watch-shipping-btn');
-
-        if (data.price.availability == 'AVAILABLE') {
-          buttonScope.setAttribute('href', '/int-ch/checkout/cart?product=' + sku + '&country=' + country + '&language=' + language);
-          buttonScope.style.display = null;
-          shippingScope.style.display = null;
-        }
-        else {
-          buttonScope.setAttribute('href', null);
-          buttonScope.style.display = 'none';
-          shippingScope.style.display = 'none';
+          if (data.price.availability == 'AVAILABLE') {
+            buttonScope.setAttribute('href', '/int-ch/checkout/cart?product=' + sku + '&country=' + country + '&language=' + language);
+            buttonScope.style.display = null;
+            shippingScope.style.display = null;
+          }
+          else {
+            buttonScope.setAttribute('href', null);
+            buttonScope.style.display = 'none';
+            shippingScope.style.display = 'none';
+          }
         }
       });
     };
@@ -79,20 +80,25 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let sku = scope.querySelector('.wide-flash-sale--node--wide-flash-sale-flash-sale').getAttribute('data-sku');
 
     // fetch if the popin should be displayed
-    request({
+    jQuery.ajax({
       url: '/ws/flashsale/get-sale-config',
-      method: 'GET',
+      type: 'get',
+      dataType: 'json',
+      async: true,
       data: {
-        sku: sku
-      }
-    }, function (err, res, body) {
-      let config = JSON.parse(body.config);
+        'sku': sku
+      },
+      success: function (data) {
+        let config = data.config;
 
-      if (!config.country || !config.language) {
-        openFlashSaleModal();
-      }
-      else {
-        refreshProductInformations(sku, config.country, config.language);
+        if (!config.country || !config.language) {
+          openFlashSaleModal();
+        }
+        else {
+          refreshProductInformations(sku, config.country, config.language);
+        }
+
+        sapientForm.submit();
       }
     });
     // endregion
@@ -108,23 +114,26 @@ document.addEventListener('DOMContentLoaded', function (event) {
       event.preventDefault();
 
       let country = form.querySelector('#edit-country-popin').value;
-      let language = form.querySelector('#edit-language').value;
+      let select = form.querySelector('#edit-language');
+      let language = select.options[select.selectedIndex].getAttribute('data-langcode');
 
       sapientForm.querySelector('#edit-country').value = country;
       sapientForm.querySelector('#edit-language').value = language;
-      sapientForm.submit();
 
       // fetch the product informations
-      request({
+      jQuery.ajax({
         url: '/ws/flashsale/set-sale-config',
-        method: 'POST',
+        type: 'post',
+        dataType: 'json',
+        async: true,
         data: {
-          sku: sku,
-          country: country,
-          language: language
+          'sku': sku,
+          'language': language,
+          'country': country
+        },
+        success: function () {
+          sapientForm.submit();
         }
-      }, function (err, res, body) {
-        console.log('BODY', body);
       });
 
       return false;
