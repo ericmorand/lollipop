@@ -79,10 +79,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
     // fetch if the popin should be displayed
     request({
       url: '/ws/flashsale/get-sale-config',
+      method: 'GET',
       data: {
         sku: sku
       }
     }, function (err, res, body) {
+      let config = body.config;
+
       if (!config.country || !config.language) {
         openFlashSaleModal();
       }

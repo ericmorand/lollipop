@@ -7,7 +7,7 @@ module.exports = function (plugin, name) {
     attributes: new Attribute(),
     content_attributes: new Attribute(),
     label: 'label',
-    sku_nid: 'sku_nid',
+    sku_nid: 'WBC1391.BH0745',
     get_current_language: function () {
       return function () {
         return 'get_current_language()';
