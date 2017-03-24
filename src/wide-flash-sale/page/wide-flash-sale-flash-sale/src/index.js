@@ -36,9 +36,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
       }, function (err, res, body) {
         // price
-        if (data.price.price) {
-          let priceScope = scope.querySelector('.slider-watch-price');
+        let data = JSON.parse(body.data);
 
+        let priceScope = scope.querySelector('.slider-watch-price');
+
+        if (data.price.price) {
           priceScope.innerHtml = data.price.price + '*';
           priceScope.style.display = null;
         }
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         sku: sku
       }
     }, function (err, res, body) {
-      let config = body.config;
+      let config = JSON.parse(body.config);
 
       if (!config.country || !config.language) {
         openFlashSaleModal();
@@ -122,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
           language: language
         }
       }, function (err, res, body) {
-        console.log('RES', res);
+        console.log('BODY', body);
       });
 
       return false;
