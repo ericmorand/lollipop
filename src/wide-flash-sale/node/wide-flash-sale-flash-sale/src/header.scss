@@ -80,7 +80,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
 
     > div[class*='col-'] {
       display: flex;
@@ -111,9 +110,10 @@
     .slider-watch-events-info {
       // col-xs-12 col-md-2
       @include make-xs-column(24);
-      @include make-md-column(4);
+      @include make-md-column(5);
+      @include make-md-column-offset(1);
 
-      text-align: right;
+      text-align: left;
       font-size: 1.2em;
       color: $grey;
       font-weight: bold;
