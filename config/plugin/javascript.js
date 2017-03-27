@@ -1,5 +1,6 @@
 module.exports = {
   transform: [
+    ['strictify'],
     ['stringify', {
       appliesTo: {
         includeExtensions: ['html']

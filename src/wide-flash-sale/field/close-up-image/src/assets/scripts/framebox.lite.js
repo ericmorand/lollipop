@@ -37,6 +37,8 @@ let hammerJQuery = require('../../../../../../../node_modules/jquery-hammerjs/no
     },
     detachedElement = new Object();
 
+  let cl = null;
+
   function frameBoxConstructor(element, o) {
     var $this = this;
 
@@ -316,7 +318,7 @@ let hammerJQuery = require('../../../../../../../node_modules/jquery-hammerjs/no
         groupTotal = $('body *[data-fb-group="' + groupName + '"]'),//Tout les Ã©lÃ©ments du groupe
         groupTotalElem = groupTotal.length - 1,//Nombre total d'Ã©lÃ©ment dans le groupe
         nextElemNumber = thisElemNumber + direction;//l'Ã©lÃ©ment suivant Ã  afficher au sein du groupe
-      nextElem = groupTotal.eq(thisElemNumber + direction);//l'Ã©lÃ©ment suivant Ã  afficher au sein du groupe
+      let nextElem = groupTotal.eq(thisElemNumber + direction);//l'Ã©lÃ©ment suivant Ã  afficher au sein du groupe
 
 
       if (thisElemNumber + direction > groupTotalElem) {//Si on es sur le dernier Ã©lÃ©ment du groupe et direction == 1
