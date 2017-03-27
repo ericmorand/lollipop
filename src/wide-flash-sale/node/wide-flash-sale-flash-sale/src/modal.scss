@@ -217,7 +217,7 @@
   @include breakpoint($screen-sm-min) {
     .modal-dialog {
       margin-top: 20px;
-      width: 95%;
+      width: 60%;
     }
 
     .modal-content {

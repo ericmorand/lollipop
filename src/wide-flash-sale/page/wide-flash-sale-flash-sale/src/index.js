@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
   let scope = document.querySelector('.page-node-type-flash-sale');
 
   if (scope) {
-    let $ = jQuery = require('jquery');
+    let $ = require('jquery');
+    let jQuery = $;
+
+    global.jQuery = jQuery;
 
     require('bootstrap');
 
