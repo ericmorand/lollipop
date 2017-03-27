@@ -250,6 +250,12 @@
       @include make-xs-column(24);
       @include make-md-column(12);
 
+      padding-top: 20px;
+
+      @include breakpoint($screen-sm-min) {
+        padding-top: 0;
+      }
+
       > div {
         // row
         @include make-row();
@@ -265,11 +271,14 @@
 
     &-img {
       .shop-watch-content {
-        padding-right: 40px;
-
         img {
           min-width: 100%;
-          width: 100%;
+          width: 100% !important;
+          height: auto !important;
+        }
+
+        @include breakpoint($screen-sm-min) {
+          padding-right: 40px;
         }
       }
     }
@@ -278,7 +287,9 @@
       margin-top: 140px;
 
       .shop-watch-content {
-        padding-left: 40px;
+        @include breakpoint($screen-sm-min) {
+          padding-left: 40px;
+        }
       }
 
       .slider-watch-hashtag {
@@ -366,7 +377,8 @@
             margin-left: 50px;
             max-width: 100%;
             min-width: inherit;
-            width: inherit;
+            width: inherit !important;
+            height: auto !important;
           }
         }
       }

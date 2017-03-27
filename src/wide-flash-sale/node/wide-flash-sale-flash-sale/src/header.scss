@@ -99,6 +99,11 @@
       // col-xs-12 col-md-6
       @include make-xs-column(24);
       @include make-md-column(7);
+
+      img {
+        width: 100% !important;
+        height: auto;
+      }
     }
 
     .slider-watch-shop {
@@ -319,10 +324,15 @@
   }
 
   .clock {
-    width: 307px;
-    height: 550px;
     position: relative;
     margin: auto;
+    padding: 20px;
+
+    @include breakpoint($screen-sm-min) {
+      padding: 0;
+      width: 307px;
+      height: 550px;
+    }
 
     > img {
       max-width: 100%;

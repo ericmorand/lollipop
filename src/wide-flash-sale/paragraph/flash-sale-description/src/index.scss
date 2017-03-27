@@ -25,21 +25,32 @@
   .about-watch-img {
     &.regular {
       @include field-article-section_leftBlock();
-      padding-right: 40px;
     }
 
     &.inverted {
       @include field-article-section_rightBlock();
-      padding-left: 40px;
     }
 
     img {
       min-width: 100%;
-      width: 100%;
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    @include breakpoint($screen-sm-min) {
+      &.regular {
+        padding-right: 40px;
+      }
+
+      &.inverted {
+        padding-left: 40px;
+      }
     }
   }
 
   .about-watch-txt {
+    padding-top: 40px;
+
     &.regular {
       @include field-article-section_rightBlock();
     }
@@ -63,6 +74,10 @@
       font-weight: lighter;
       font-size: 1.6em;
       color: $backgroundDark;
+    }
+
+    @include breakpoint($screen-sm-min) {
+      padding-top: 0;
     }
   }
 
