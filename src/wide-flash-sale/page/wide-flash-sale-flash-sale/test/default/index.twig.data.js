@@ -3,7 +3,7 @@ module.exports = function (plugin) {
 
   let data = require('../../../../node/wide-flash-sale-flash-sale/test/default/index.twig.data')(plugin);
 
-  console.log([data.fixture]);
+  data.fixture.popin_flashsale = '<select><option>test</option></select>';
 
   return {
     demo: {
