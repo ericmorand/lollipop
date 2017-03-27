@@ -45,6 +45,7 @@
     "postcss": "^5.2.6",
     "postcss-copy": "^6.1.0",
     "sha.js": "^2.4.8",
+    "strictify": "^0.2.0",
     "stringify": "^5.1.0",
     "stromboli": "^0.11.0",
     "stromboli-plugin-javascript": "^0.7.0",
