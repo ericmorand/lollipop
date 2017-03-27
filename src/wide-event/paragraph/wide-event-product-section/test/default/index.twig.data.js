@@ -1,4 +1,4 @@
-const Attributes = require('../../../../../drupal/attributes');
+const Attributes = require('drupal-attribute');
 
 module.exports = function (plugin) {
   return {

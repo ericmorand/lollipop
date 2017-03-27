@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ demo.title }}</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body class="{{ demo.class }}">
+<div class="page-node-type-flash-sale">
+    <div id="main-header">
+        <div class="region-icon-menu">
+            <div class="icon-nav">
+                <a href="#" class="icon-language">LANGUAGE SWITCHER</a>
+            </div>
+        </div>
+    </div>
+    <form id="sapient-settings-form" method="POST" action="/sapient">
+        <input id="edit-country">
+        <select id="edit-language">
+            <option data-langcode="en">EN</option>
+        </select>
+    </form>
+    <form id="wide-flashsale-popin-form" method="POST" action="/flashsale">
+        <input id="edit-country-popin" value="CH">
+        <input id="edit-language" value="en/gb">
+        <input type="submit">SUBMIT</input>
+    </form>
+    {% for fixture in fixtures %}
+        <div class="{{ demo.class }}--fixture">
+            <h1>{{ fixture.label }}</h1>
+            <div>
+                {% include '../../../../node/wide-flash-sale-flash-sale/src/index.twig' with fixture %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<script src="../js/index.js"></script>
+</body>
+</html>
