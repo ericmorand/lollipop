@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       let country = form.querySelector('#edit-country-popin').value;
       let select = form.querySelector('#edit-language');
       let language = select.options[select.selectedIndex].getAttribute('data-langcode');
+      let nodeid = form.querySelector("#edit-nodeid").value;
 
       sapientForm.querySelector('#edit-country').value = country;
       sapientForm.querySelector('#edit-language').value = language;
@@ -125,10 +126,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
         data: {
           'sku': sku,
           'language': language,
-          'country': country
+          'country': country,
+          'nodeid': nodeid
         },
-        success: function () {
-          sapientForm.submit();
+        success: function (ret) {
+          document.location = ret.redire;
         }
       });
 
