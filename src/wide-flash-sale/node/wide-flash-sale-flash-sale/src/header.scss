@@ -98,20 +98,20 @@
     .slider-watch-image {
       // col-xs-12 col-md-6
       @include make-xs-column(24);
-      @include make-md-column(12);
+      @include make-md-column(7);
     }
 
     .slider-watch-shop {
       // col-xs-12 col-md-2
       @include make-xs-column(24);
-      @include make-md-column(4);
+      @include make-md-column(6);
     }
 
     .slider-watch-events-info {
       // col-xs-12 col-md-2
       @include make-xs-column(24);
-      @include make-md-column(5);
-      @include make-md-column-offset(1);
+      @include make-md-column(6);
+      @include make-md-column-offset(2);
 
       text-align: left;
       font-size: 1.2em;
@@ -121,6 +121,10 @@
       @include SecondaryFont;
       @media (max-width: 1200px) { //md
         text-align: center;
+      }
+
+      p {
+        margin: 0;
       }
     }
 
