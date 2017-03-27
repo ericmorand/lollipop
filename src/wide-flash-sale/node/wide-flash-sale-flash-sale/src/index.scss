@@ -335,6 +335,12 @@
       }
     }
 
+    &-img-cta {
+      background: url("./assets/images/bg-shop.jpg") center no-repeat;
+      background-size: cover;
+      padding: 70px 0;
+    }
+
     &-terms {
       .shop-watch-content {
         > span {
@@ -374,9 +380,7 @@
       padding-top: 60px;
 
       &-img-cta {
-        background: url("./assets/images/bg-shop.jpg") center no-repeat;
-        background-size: cover;
-        padding: 70px 0;
+        background: none;
       }
 
       &-img {
