@@ -3,13 +3,8 @@ const Promise = require('promise');
 const TwigPlugin = require('stromboli-plugin-twig');
 
 class MyTwigPlugin extends TwigPlugin {
-  getData(template) {
-    let result = {
-      files: [],
-      data: this.config.data
-    };
-
-    return Promise.resolve(result);
+  getData(file) {
+    return Promise.resolve(this.config.data);
   }
 }
 

@@ -5,13 +5,13 @@ module.exports = function (plugin) {
 
   fixture.title = 'Product available';
 
-  fixture.check_commerce = function() {
+  fixture.check_commerce = function () {
     return function () {
       return 'available-online';
     }
   };
 
-  fixture.get_price = function() {
+  fixture.get_price = function () {
     return function (sku) {
       return {
         price: 'CHF1234',
@@ -28,8 +28,10 @@ module.exports = function (plugin) {
   fixture.content.field_flash_sale_hashtag = '#happyautavia';
   fixture.content.field_flash_sale_right_desc = '1500 happy clients';
 
+  let productDescTemplate = require('../../../../../paragraph/flash-sale-description/src/index.twig');
+
   fixture.content.field_flash_sale_product_desc = [
-    {
+    productDescTemplate.render({
       paragraph: {
         field_flash_sale_p_orientation: [
           {
@@ -44,8 +46,8 @@ module.exports = function (plugin) {
           '<img src="//placehold.it/790x530" width="790" height="530">'
         ]
       }
-    },
-    {
+    }),
+    productDescTemplate.render({
       paragraph: {
         field_flash_sale_p_orientation: [
           {
@@ -60,8 +62,8 @@ module.exports = function (plugin) {
           '<img src="//placehold.it/1920x1080" width="1920" height="1080">'
         ]
       }
-    }
-  ];
+    })
+  ].join();
 
   return {
     demo: data.demo,
