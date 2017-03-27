@@ -111,7 +111,7 @@
       // col-xs-12 col-md-2
       @include make-xs-column(24);
       @include make-md-column(6);
-      @include make-md-column-offset(2);
+      @include make-md-column-offset(2.5);
 
       text-align: left;
       font-size: 1.2em;
