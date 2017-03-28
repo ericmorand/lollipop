@@ -9,7 +9,7 @@ mockjax({
   dataType: 'json',
   responseText: {
     config: {
-      country: 'uk',
+      country: 'ch',
       language: 'en-gb'
     }
   }
@@ -19,14 +19,25 @@ mockjax({
   url: '/ws/flashsale/get-price',
   type: 'get',
   dataType: 'json',
-  responseText: {
-    price: {
-      price: '1234.56',
-      availability: 'AVAILABLE'
+  response: function(settings) {
+    let availaibility = null;
+
+    switch (settings.data.country) {
+      case 'ch':
+        availaibility = 'NOT AVAILABLE';
+        break;
+      default:
+        availaibility = 'AVAILABLE';
     }
+
+    this.responseText = {
+      price: {
+        price: '1234.56',
+        availability: availaibility
+      }
+    };
   }
 });
-
 
 mockjax({
   url: '/ws/flashsale/set-sale-config',

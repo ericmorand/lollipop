@@ -30,10 +30,10 @@
     <fieldset>
         <legend>Flash sale form</legend>
         <form id="wide-flashsale-popin-form" method="POST" action="/flashsale">
-            <select id="edit-country-popin">
+            <select id="edit-country-popin" data-currency-au="AUD" data-currency-ca="CAD" data-currency-ch="CHF" data-currency-fr="EUR" data-currency-us="USD">
                 <option value="_none">SELECT A COUNTRY</option>
                 <option value="ch">CH</option>
-                <option value="uk">UK</option>
+                <option value="fr">FR</option>
             </select>
             <select id="edit-language">
                 <option value="1" data-langcode="fr">FR</option>
@@ -41,6 +41,7 @@
             </select>
             <input id="edit-sku" value="sku">
             <input id="edit-nodeid" value="nodeid">
+            <p class="currency" style="/* display: none; */">Currency: <span></span></p>
             <input type="submit">SUBMIT</input>
         </form>
     </fieldset>
