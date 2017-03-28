@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       setPopinCurrency();
 
       jQuery.ajax({
-        url: '/ws/flashsale/get-price',
+        url: '/ws/sales/flash/get-price',
         type: 'get',
         dataType: 'json',
         async: true,
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
       // fetch the config
       jQuery.ajax({
-        url: '/ws/flashsale/get-sale-config',
+        url: '/ws/sales/flash/get-sale-config',
         type: 'get',
         dataType: 'json',
         async: true,
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
         // fetch the product informations
         jQuery.ajax({
-          url: '/ws/flashsale/set-sale-config',
+          url: '/ws/sales/flash/set-sale-config',
           type: 'post',
           dataType: 'json',
           async: true,
