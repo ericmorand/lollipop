@@ -13,13 +13,19 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     // fetch the main header language icon
     let languageIcon = scope.querySelector('#main-header .region-icon-menu .icon-nav a.icon-language');
+    let mobileLanguageIcon = scope.querySelector('#main-header .region-main-menu .main-nav a.icon-language');
 
     // @see http://stackoverflow.com/questions/19469881/remove-all-event-listeners-of-specific-type
-    let languageIconClone = languageIcon.cloneNode(true);
+    let cloneNode = function(node) {
+      let nodeClone = node.cloneNode(true);
 
-    languageIcon.parentNode.replaceChild(languageIconClone, languageIcon);
+      node.parentNode.replaceChild(nodeClone, node);
 
-    languageIcon = languageIconClone;
+      return nodeClone;
+    };
+
+    languageIcon = cloneNode(languageIcon);
+    mobileLanguageIcon = cloneNode(mobileLanguageIcon);
 
     // fetch the flash-sale modal
     let flashSaleModal = scope.querySelector('.wide-flash-sale--node--wide-flash-sale-flash-sale > .popin-lang');
@@ -69,11 +75,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
       });
     };
 
-    if (languageIcon && flashSaleModal) {
-      languageIcon.addEventListener('click', function (event) {
-        event.preventDefault();
+    if (flashSaleModal) {
+      [languageIcon, mobileLanguageIcon].forEach(function(node) {
+        node.addEventListener('click', function (event) {
+          event.preventDefault();
 
-        openFlashSaleModal();
+          openFlashSaleModal();
+        });
       });
     }
 
