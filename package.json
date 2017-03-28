@@ -38,6 +38,7 @@
     "event-emitter": "^0.3.5",
     "glslify": "^6.0.1",
     "glslify-require": "^1.1.0",
+    "jquery-mockjax": "^2.2.1",
     "log-util": "^1.1.2",
     "merge": "^1.2.0",
     "minifyify": "^7.3.4",

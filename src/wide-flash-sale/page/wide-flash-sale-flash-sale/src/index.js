@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
     require('bootstrap');
 
     let sku = scope.querySelector('#edit-sku').value;
+    let form = document.querySelector('#wide-flashsale-popin-form');
+    let countrySelector = form.querySelector('#edit-country-popin');
+    let languageSelector = form.querySelector('#edit-language');
 
     // fetch the main header language icon
     let languageIcon = scope.querySelector('#main-header .region-icon-menu .icon-nav a.icon-language');
@@ -59,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
           // shop link
           let buttonScope = scope.querySelector('.event-watch-cart-btn');
-          let shippingScope = scope.querySelector('.slider-watch-shipping-btn');
+          let shippingScope = scope.querySelector('.slider-watch-shipping');
 
-          if (data.price.availability == 'AVAILABLE') {
+          if (data.price.availability === 'AVAILABLE') {
             buttonScope.setAttribute('href', '/int-ch/checkout/cart?product=' + sku + '&country=' + country + '&language=' + language);
             buttonScope.style.display = null;
             shippingScope.style.display = null;
@@ -71,6 +74,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
             buttonScope.style.display = 'none';
             shippingScope.style.display = 'none';
           }
+
+          // update form values
+          countrySelector.value = country;
+
+          let selectedValue = 0;
+
+          for (let i = 0; i < languageSelector.options.length; i++) {
+            let option = languageSelector.options[i];
+
+            if (option.getAttribute('data-langcode') === language) {
+              selectedValue = option.value;
+            }
+          }
+
+          languageSelector.value = selectedValue;
         }
       });
     };
@@ -113,16 +131,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
     // region hack
     // todo: remove this ugly hack once the back-end is able to handle the for submission by himself
     // todo: for now, it's been confirmed by Hervé TUBALDO and Guillaume DOUTRE that hacking the submission is the way to go
-    let form = document.querySelector('#wide-flashsale-popin-form');
     let sapientForm = document.querySelector('#sapient-settings-form');
     let formSubmitButton = form.querySelector('input[type="submit"]');
 
     formSubmitButton.addEventListener('click', function (event) {
       event.preventDefault();
 
-      let country = form.querySelector('#edit-country-popin').value;
-      let select = form.querySelector('#edit-language');
-      let language = select.options[select.selectedIndex].getAttribute('data-langcode');
+      let country = countrySelector.value;
+      let language = languageSelector.options[languageSelector.selectedIndex].getAttribute('data-langcode');
       let nodeid = form.querySelector("#edit-nodeid").value;
 
       sapientForm.querySelector('#edit-country').value = country;
@@ -140,8 +156,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
           'country': country,
           'nodeid': nodeid
         },
-        success: function (ret) {
-          document.location = ret.redire;
+        success: function (data) {
+          document.location = data.redire;
         }
       });
 
