@@ -4,22 +4,31 @@ require('../../../../node/wide-flash-sale-flash-sale/src');
 let mockjax = require('jquery-mockjax')(require('jquery'), global);
 
 mockjax({
-  url: '/ws/flashsale/get-sale-config',
+  url: '/ws/sales/flash/get-sale-config',
   type: 'get',
   dataType: 'json',
-  responseText: {
-    config: {
-      country: 'ch',
-      language: 'en-gb'
+  response: function (settings) {
+    if (false) {
+      this.responseText = {
+        config: {}
+      }
+    }
+    else {
+      this.responseText = {
+        config: {
+          country: 'ch',
+          language: 'en-gb'
+        }
+      }
     }
   }
 });
 
 mockjax({
-  url: '/ws/flashsale/get-price',
+  url: '/ws/sales/flash/get-price',
   type: 'get',
   dataType: 'json',
-  response: function(settings) {
+  response: function (settings) {
     let availaibility = null;
 
     switch (settings.data.country) {
@@ -40,10 +49,12 @@ mockjax({
 });
 
 mockjax({
-  url: '/ws/flashsale/set-sale-config',
+  url: '/ws/sales/flash/set-sale-config',
   type: 'post',
   dataType: 'json',
-  responseText: {
-    redire: '#'
+  response: function () {
+    this.responseText = {
+      redire: '#'
+    };
   }
 });
