@@ -50,30 +50,29 @@ document.addEventListener('DOMContentLoaded', function (event) {
           'country': country
         },
         success: function (data) {
-          let priceScope = scope.querySelector('.slider-watch-price');
+          let cartScopes = scope.querySelectorAll('.slider-watch-cart');
+          
+          cartScopes.forEach(function(cartScope) {
+            let buttonScope = cartScope.querySelector('.event-watch-cart-btn');
+            let priceScope = cartScope.querySelector('.slider-watch-price');
 
-          if (data.price.price) {
-            priceScope.innerHtml = data.price.price + '*';
-            priceScope.style.display = null;
-          }
-          else {
-            priceScope.style.display = 'none';
-          }
+            if (data.price.price) {
+              priceScope.textContent = data.price.price + '*';
+              priceScope.style.display = null;
+            }
+            else {
+              priceScope.style.display = 'none';
+            }
 
-          // shop link
-          let buttonScope = scope.querySelector('.event-watch-cart-btn');
-          let shippingScope = scope.querySelector('.slider-watch-shipping');
-
-          if (data.price.availability === 'AVAILABLE') {
-            buttonScope.setAttribute('href', '/int-ch/checkout/cart?product=' + sku + '&country=' + country + '&language=' + language);
-            buttonScope.style.display = null;
-            shippingScope.style.display = null;
-          }
-          else {
-            buttonScope.setAttribute('href', null);
-            buttonScope.style.display = 'none';
-            shippingScope.style.display = 'none';
-          }
+            if (data.price.availability === 'AVAILABLE') {
+              buttonScope.setAttribute('href', '/int-ch/checkout/cart?product=' + sku + '&country=' + country + '&language=' + language);
+              cartScope.style.display = null;
+            }
+            else {
+              buttonScope.setAttribute('href', null);
+              cartScope.style.display = 'none';
+            }
+          });
 
           // update form values
           countrySelector.value = country;
