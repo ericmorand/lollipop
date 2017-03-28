@@ -7,10 +7,19 @@ mockjax({
   url: '/ws/flashsale/get-sale-config',
   type: 'get',
   dataType: 'json',
-  responseText: {
-    config: {
-      country: 'ch',
-      language: 'en-gb'
+  response: function (settings) {
+    if (false) {
+      this.responseText = {
+        config: {}
+      }
+    }
+    else {
+      this.responseText = {
+        config: {
+          country: 'ch',
+          language: 'en-gb'
+        }
+      }
     }
   }
 });
@@ -19,7 +28,7 @@ mockjax({
   url: '/ws/flashsale/get-price',
   type: 'get',
   dataType: 'json',
-  response: function(settings) {
+  response: function (settings) {
     let availaibility = null;
 
     switch (settings.data.country) {
@@ -43,7 +52,9 @@ mockjax({
   url: '/ws/flashsale/set-sale-config',
   type: 'post',
   dataType: 'json',
-  responseText: {
-    redire: '#'
+  response: function () {
+    this.responseText = {
+      redire: '#'
+    };
   }
 });
