@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let form = document.querySelector('#wide-flashsale-popin-form');
     let countrySelector = form.querySelector('#edit-country-popin');
     let languageSelector = form.querySelector('#edit-language');
+    let currentCountry = null;
+    let currentLanguage = null;
 
     // fetch the main header language icon
     let languageIcon = scope.querySelector('#main-header .region-icon-menu .icon-nav a.icon-language');
@@ -27,6 +29,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
       return nodeClone;
     };
 
+    let setPopinCurrency = function() {
+      let currency = countrySelector.getAttribute('data-currency-' + currentCountry);
+
+      let currencyScope = form.querySelector('.currency');
+
+      if (currency) {
+        currencyScope.querySelector('span').textContent = currency;
+        currencyScope.style.display = null;
+      }
+      else {
+        currencyScope.querySelector('span').textContent = '';
+        currencyScope.style.display = null;
+      }
+    };
+
     languageIcon = cloneNode(languageIcon);
     mobileLanguageIcon = cloneNode(mobileLanguageIcon);
 
@@ -34,11 +51,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let flashSaleModal = scope.querySelector('.wide-flash-sale--node--wide-flash-sale-flash-sale > .popin-lang');
 
     let openFlashSaleModal = function () {
-      // fetch
       $(flashSaleModal).modal();
     };
 
-    let refreshProductInformations = function (sku, country, language) {
+    let refreshProductInformations = function () {
+      setPopinCurrency();
+
       jQuery.ajax({
         url: '/ws/flashsale/get-price',
         type: 'get',
@@ -46,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
         async: true,
         data: {
           'sku': sku,
-          'language': language,
-          'country': country
+          'language': currentLanguage,
+          'country': currentCountry
         },
         success: function (data) {
           let cartScopes = scope.querySelectorAll('.slider-watch-cart');
@@ -58,14 +76,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
             if (data.price.price) {
               priceScope.textContent = data.price.price + '*';
-              priceScope.style.display = null;
             }
             else {
-              priceScope.style.display = 'none';
+              priceScope.textContent = '';
             }
 
             if (data.price.availability === 'AVAILABLE') {
-              buttonScope.setAttribute('href', '/int-ch/checkout/cart?product=' + sku + '&country=' + country + '&language=' + language);
+              buttonScope.setAttribute('href', '/int-ch/checkout/cart?product=' + sku + '&country=' + currentCountry + '&language=' + currentLanguage);
               cartScope.style.display = null;
             }
             else {
@@ -75,14 +92,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
           });
 
           // update form values
-          countrySelector.value = country;
+          countrySelector.value = currentCountry;
 
           let selectedValue = 0;
 
           for (let i = 0; i < languageSelector.options.length; i++) {
             let option = languageSelector.options[i];
 
-            if (option.getAttribute('data-langcode') === language) {
+            if (option.getAttribute('data-langcode') === currentLanguage) {
               selectedValue = option.value;
             }
           }
@@ -102,30 +119,43 @@ document.addEventListener('DOMContentLoaded', function (event) {
       });
     }
 
-    // region hack
-    // todo: these things should be done in the back-end
+    let init = function() {
+      countrySelector.addEventListener('change', function(event) {
+        currentCountry = countrySelector.value;
 
-    // fetch if the popin should be displayed
-    jQuery.ajax({
-      url: '/ws/flashsale/get-sale-config',
-      type: 'get',
-      dataType: 'json',
-      async: true,
-      data: {
-        'sku': sku
-      },
-      success: function (data) {
-        let config = data.config;
+        refreshProductInformations();
+      });
 
-        if (!config.country || !config.language) {
-          openFlashSaleModal();
+      languageSelector.addEventListener('change', function(event) {
+        currentLanguage = languageSelector.options[languageSelector.selectedIndex].getAttribute('data-langcode');
+
+        refreshProductInformations();
+      });
+
+      // fetch the config
+      jQuery.ajax({
+        url: '/ws/flashsale/get-sale-config',
+        type: 'get',
+        dataType: 'json',
+        async: true,
+        data: {
+          'sku': sku
+        },
+        success: function (data) {
+          let config = data.config;
+
+          if (!config.country || !config.language) {
+            openFlashSaleModal();
+          }
+          else {
+            currentCountry = config.country;
+            currentLanguage = config.language;
+
+            refreshProductInformations();
+          }
         }
-        else {
-          refreshProductInformations(sku, config.country, config.language);
-        }
-      }
-    });
-    // endregion
+      });
+    };
 
     // region hack
     // todo: remove this ugly hack once the back-end is able to handle the for submission by himself
@@ -136,12 +166,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
     formSubmitButton.addEventListener('click', function (event) {
       event.preventDefault();
 
-      let country = countrySelector.value;
-      let language = languageSelector.options[languageSelector.selectedIndex].getAttribute('data-langcode');
       let nodeid = form.querySelector("#edit-nodeid").value;
 
-      sapientForm.querySelector('#edit-country').value = country;
-      sapientForm.querySelector('#edit-language').value = language;
+      sapientForm.querySelector('#edit-country').value = currentCountry;
+      sapientForm.querySelector('#edit-language').value = currentLanguage;
 
       // fetch the product informations
       jQuery.ajax({
@@ -151,8 +179,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
         async: true,
         data: {
           'sku': sku,
-          'language': language,
-          'country': country,
+          'language': currentLanguage,
+          'country': currentCountry,
           'nodeid': nodeid
         },
         success: function (data) {
@@ -163,6 +191,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
       return false;
     });
     // endregion hack
+
+    init();
   }
 });
 
