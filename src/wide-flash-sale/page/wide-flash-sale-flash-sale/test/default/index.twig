@@ -15,18 +15,30 @@
             </div>
         </div>
     </div>
-    <form id="sapient-settings-form" method="POST" action="/sapient">
-        <input id="edit-country">
-        <select id="edit-language">
-            <option data-langcode="en">EN</option>
-        </select>
-    </form>
-    <form id="wide-flashsale-popin-form" method="POST" action="/flashsale">
-        <input id="edit-country-popin" value="CH">
-        <input id="edit-language" value="en/gb">
-        <input id="edit-sku" value="123456">
-        <input type="submit">SUBMIT</input>
-    </form>
+    <fieldset>
+        <legend>Sapient form</legend>
+        <form id="sapient-settings-form" method="POST" action="/sapient">
+            <input type="text" id="edit-country">
+            <input type="text" id="edit-language">
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>Flash sale form</legend>
+        <form id="wide-flashsale-popin-form" method="POST" action="/flashsale">
+            <select id="edit-country-popin">
+                <option value="_none">SELECT A COUNTRY</option>
+                <option value="ch">CH</option>
+                <option value="uk">UK</option>
+            </select>
+            <select id="edit-language">
+                <option value="1" data-langcode="fr">FR</option>
+                <option value="2" data-langcode="en-gb">EN</option>
+            </select>
+            <input id="edit-sku" value="sku">
+            <input id="edit-nodeid" value="nodeid">
+            <input type="submit">SUBMIT</input>
+        </form>
+    </fieldset>
     {% for fixture in fixtures %}
         <div class="{{ demo.class }}--fixture">
             <h1>{{ fixture.label }}</h1>
