@@ -144,27 +144,6 @@
       margin: 20px 0;
     }
 
-    .slider-watch-hashtag {
-      @include SecondaryFont;
-      display: block;
-      text-align: center;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 7px;
-      font-size: 1.6em;
-      color: $secondaryDark;
-
-      @media (max-width: 1615px) { //lg
-        letter-spacing: 4px;
-      }
-      @media (max-width: 1300px) {
-        letter-spacing: 2px;
-      }
-      @media (max-width: 1200px) {
-        letter-spacing: 7px;
-      }
-    }
-
     .slider-watch-hashtag-text {
       @include SecondaryFont;
       letter-spacing: 4px;
