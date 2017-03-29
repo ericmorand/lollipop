@@ -12,6 +12,8 @@
 .wide-flash-sale--node--wide-flash-sale-flash-sale {
   @import "./popin-lang";
 
+  padding-top: 0;
+
   // Global styles
   h1 {
     @include PrimaryFont;
@@ -271,21 +273,30 @@
     }
 
     &-img {
+      margin-top: 0 !important;
+
       .shop-watch-content {
+        text-align: center;
+
         img {
-          min-width: 100%;
-          width: 100% !important;
-          height: auto !important;
+          min-width: inherit;
+          width: inherit !important;
+          height: auto;
         }
 
         @include breakpoint($screen-sm-min) {
+          width: 100% !important;
           padding-right: 40px;
         }
       }
     }
 
     &-cta {
-      margin-top: 140px;
+      margin-top: 0 !important;
+
+      @include breakpoint($screen-sm-min) {
+        margin-top: 140px;
+      }
 
       .shop-watch-content {
         @include breakpoint($screen-sm-min) {
@@ -358,38 +369,13 @@
     }
 
     &-terms {
+      margin-top: 60px !important;
+
       .shop-watch-content {
         > span {
           @include PrimaryFont;
           font-size: 1.4em;
         }
-      }
-    }
-
-    @include breakpoint($screen-xs-min) {
-      padding-top: 0;
-
-      &-img {
-        margin-top: 0 !important;
-        text-align: center;
-
-        .shop-watch-content {
-          img {
-            margin-left: 50px;
-            max-width: 100%;
-            min-width: inherit;
-            width: inherit !important;
-            height: auto !important;
-          }
-        }
-      }
-
-      &-cta {
-        margin-top: 0 !important;
-      }
-
-      &-terms {
-        margin-top: 60px !important;
       }
     }
 
