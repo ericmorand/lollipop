@@ -293,6 +293,7 @@
           min-width: inherit;
           width: inherit !important;
           height: auto;
+          max-width: 100%;
         }
 
         @include breakpoint($screen-sm-min) {
