@@ -51,7 +51,7 @@
     "stringify": "^5.1.0",
     "stromboli": "^0.12.0",
     "stromboli-plugin-javascript": "^0.8.0",
-    "stromboli-plugin-sass": "^0.13.0",
+    "stromboli-plugin-sass": "^0.14.0",
     "stromboli-plugin-twig": "^0.18.0",
     "twig": "^1.10.0",
     "uglifyify": "^3.0.4"
