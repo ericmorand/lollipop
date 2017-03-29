@@ -12,12 +12,12 @@ module.exports = function (plugin) {
       },
       {
         title: 'Lorem ipsum',
-        image: '//placehold.it/1920x1080',
+        image: '//placehold.it/1080x1920',
         orientation: 'image_right'
       },
       {
         title: 'Lorem ipsum',
-        image: '//placehold.it/1920x1080',
+        image: '//placehold.it/640x640',
         orientation: 'image_left'
       }
     ]

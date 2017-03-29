@@ -4,19 +4,38 @@
 @import "../../../../global/font/src/mixins";
 @import "../../../../global/color/src/variables";
 @import "../../../../global/breakpoint/src/index";
+@import "../../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/clearfix";
 
-@mixin field-article-section_leftBlock() {
-  @include make-xs-column(20);
-  @include make-xs-column-offset(2);
-  @include make-sm-column(10);
-  @include make-sm-column-offset(2);
+@mixin field-article-section-image($layout) {
+  @if ($layout == inverted) {
+    @include make-xs-column(20);
+    @include make-xs-column-offset(2);
+    @include make-sm-column(10);
+    @include make-sm-column-push(10);
+    @include make-sm-column-offset(2);
+  }
+  @else {
+    @include make-xs-column(20);
+    @include make-xs-column-offset(2);
+    @include make-sm-column(10);
+    @include make-sm-column-offset(2);
+  }
 }
 
-@mixin field-article-section_rightBlock() {
-  @include make-xs-column(20);
-  @include make-xs-column-offset(2);
-  @include make-sm-column(10);
-  @include make-sm-column-offset(0);
+@mixin field-article-section-text($layout) {
+  @if ($layout == inverted) {
+    @include make-xs-column(20);
+    @include make-xs-column-offset(2);
+    @include make-sm-column(10);
+    @include make-sm-column-pull(10);
+    @include make-sm-column-offset(0);
+  }
+  @else {
+    @include make-xs-column(20);
+    @include make-xs-column-offset(2);
+    @include make-sm-column(10);
+    @include make-sm-column-offset(0);
+  }
 }
 
 .wide-flash-sale--paragraph--flash-sale-description {
@@ -24,26 +43,23 @@
 
   .about-watch-img {
     &.regular {
-      @include field-article-section_leftBlock();
+      @include field-article-section-image(regular);
     }
 
     &.inverted {
-      @include field-article-section_rightBlock();
+      @include field-article-section-image(inverted);
     }
 
     img {
       min-width: 100%;
       width: 100% !important;
       height: auto !important;
+      display: block;
     }
 
     @include breakpoint($screen-sm-min) {
       &.regular {
         padding-right: 40px;
-      }
-
-      &.inverted {
-        padding-left: 40px;
       }
     }
   }
@@ -52,11 +68,17 @@
     padding-top: 40px;
 
     &.regular {
-      @include field-article-section_rightBlock();
+      @include field-article-section-text(regular);
     }
 
     &.inverted {
-      @include field-article-section_leftBlock();
+      @include field-article-section-text(inverted);
+    }
+
+    @include breakpoint($screen-sm-min) {
+      &.inverted {
+        padding-right: 40px;
+      }
     }
 
     h3 {
@@ -81,27 +103,5 @@
     }
   }
 
-  //@include breakpoint(max-width $breakpoint--xs) {
-  //  display: table;
-  //  padding: 0 8.33333333%;
-  //
-  //  .about-watch-content {
-  //    padding: 0 !important;
-  //  }
-  //
-  //  .about-watch-img {
-  //    display: table-header-group;
-  //    float: none;
-  //    margin-bottom: 40px;
-  //  }
-  //
-  //  .about-watch-txt {
-  //    display: table-footer-group;
-  //    float: none;
-  //
-  //    h3 {
-  //      margin-top: 40px;
-  //    }
-  //  }
-  //}
+  @include clearfix;
 }
