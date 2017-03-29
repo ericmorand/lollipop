@@ -27,7 +27,7 @@ module.exports = function (plugin) {
   fixture.label = 'TAG HEUER AUTAVIA 2017 FR';
   fixture.node.field_flash_sale_background.entity.uri.value = 'tagheuer.tag-int.cross-systems.ch/sites/default/files/2017-03/bg-slider.jpg';
   fixture.node.field_flash_sale_desc_background.entity.uri.value = 'tagheuer.tag-int.cross-systems.ch/sites/default/files/2017-03/bg-section-05.jpg';
-  fixture.node.field_flash_sale_pdf_url_preview.value = '<iframe src="//example.com">';
+  fixture.node.field_flash_sale_pdf_url_preview.value = '<iframe src="//example.com"></iframe>';
 
   fixture.content.field_flash_sale_subtitle = '<p>Calibre Heuer 02</p><p>Automatic Chronograph</p>';
   fixture.content.field_flash_sale_description = '<p>100 M - 42 MM</p><p>CBE2110.FC8226</p>';
