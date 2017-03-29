@@ -3,6 +3,8 @@ const DrupalAttribute = require('drupal-attribute');
 module.exports = function (plugin) {
   let data = require('../../default/index.twig.data')(plugin);
 
+  data.demo.title = 'Flash Sale node - Available product';
+
   let fixture = data.fixture;
 
   fixture.title = 'Product available';
@@ -50,7 +52,7 @@ module.exports = function (plugin) {
         ]
       },
       content: {
-        field_flash_sale_p_title: 'Lorem ipsum',
+        field_flash_sale_p_title: 'Lorem ipsum dolor sit amet',
         field_flash_sale_p_text: loremIpsum,
         field_flash_sale_p_image: [
           '<img src="http://tagheuer.tag-int.cross-systems.ch/sites/default/files/styles/flash_sale_description_image/public/2017-03/about-01.jpg?itok=_m2xgthX" width="790" height="530">'
