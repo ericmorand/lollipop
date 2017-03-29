@@ -1,10 +1,7 @@
-document.addEventListener('DOMContentLoaded', function(e) {
-  let jQuery = require('jquery');
+let jQuery = require('jquery');
 
-  global.jQuery = jQuery;
+global.jQuery = jQuery;
 
-  require('bootstrap');
-});
-
+require('bootstrap');
 
 module.exports = {};

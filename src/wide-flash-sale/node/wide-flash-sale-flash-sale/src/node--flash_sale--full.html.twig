@@ -25,7 +25,7 @@
                         {{ content.field_flash_sale_subtitle }}
                         <span class="slider-watch-details">{{ content.field_flash_sale_description }}</span>
                     </div>
-                    <a class="slider-watch-image" href="{{ file_url(node.field_flash_sale_preview.entity.fileuri) }}" target="_blank">
+                    <a class="slider-watch-image" target="_blank">
                         <div>
                             <div class="bg">
                                 <div class="clock">
@@ -34,6 +34,16 @@
                             </div>
                         </div>
                     </a>
+                    <div class="wide-flash-sale--modal pdf-preview">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                </div>
+                                <div class="modal-body">{{ node.field_flash_sale_pdf_url_preview.value }}</div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="slider-watch-shop">
                         <span class="slider-watch-hashtag">{{ content.field_flash_sale_hashtag }}</span>
                         <span class="slider-watch-hashtag-text">{{ content.field_flash_sale_right_desc }}</span>

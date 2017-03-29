@@ -65,6 +65,9 @@ module.exports = function (plugin, name) {
         entity: {
           fileuri: 'node.field_flash_sale_preview.entity.fileuri'
         }
+      },
+      field_flash_sale_pdf_url_preview: {
+        value: 'node.field_flash_sale_pdf_url_preview.value'
       }
     },
     form: 'form',
