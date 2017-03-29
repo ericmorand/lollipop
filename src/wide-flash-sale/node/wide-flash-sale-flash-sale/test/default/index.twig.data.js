@@ -47,7 +47,7 @@ module.exports = function (plugin, name) {
       field_flash_sale_background: {
         entity: {
           uri: {
-            value: 'placehold.it/1920x1080/543210?text=node.field_flash_sale_background.entity.uri.value'
+            value: 'placehold.it/1920x1080/123456?text=node.field_flash_sale_background.entity.uri.value'
           }
         }
       },
@@ -55,6 +55,34 @@ module.exports = function (plugin, name) {
         entity: {
           uri: {
             value: 'placehold.it/1920x1080/543210?text=node.field_flash_sale_desc_background.entity.uri.value'
+          }
+        }
+      },
+      field_flash_sale_header_back_l: {
+        entity: {
+          uri: {
+            value: 'placehold.it/1920x1080/feda30?text=node.field_flash_sale_header_back_l.entity.uri.value'
+          }
+        }
+      },
+      field_flash_sale_header_back_tr: {
+        entity: {
+          uri: {
+            value: 'placehold.it/1920x1080/fee9d0?text=node.field_flash_sale_header_back_tr.entity.uri.value'
+          }
+        }
+      },
+      field_flash_sale_header_back_r: {
+        entity: {
+          uri: {
+            value: 'placehold.it/1920x1080/fef970?text=node.field_flash_sale_header_back_r.entity.uri.value'
+          }
+        }
+      },
+      field_flash_sale_header_back_c: {
+        entity: {
+          uri: {
+            value: 'placehold.it/1920x1080/543210?text=node.field_flash_sale_header_back_c.entity.uri.value'
           }
         }
       },

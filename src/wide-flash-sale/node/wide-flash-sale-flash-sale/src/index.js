@@ -14,6 +14,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  global.jQuery = require('jquery');
+
+  require('parallax-js/source/jquery.parallax');
+
+  let scene = jQuery('#scene').parallax({
+    frictionX:0.6,
+    frictionY:0.6,
+    scalarX: 11,
+    scalarY: 15
+  });
+
   // pdf preview
   let anchor = scope.querySelector('a.slider-watch-image');
 
