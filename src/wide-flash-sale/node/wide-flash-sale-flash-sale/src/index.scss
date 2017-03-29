@@ -7,9 +7,10 @@
 @import "../../../../global/breakpoint/src/index";
 @import "../../../../global/font/src/index";
 @import "../../../../global/font/src/mixins";
+@import "../../../modal/src/index.scss";
 
 .wide-flash-sale--node--wide-flash-sale-flash-sale {
-  @import "modal";
+  @import "./popin-lang";
 
   // Global styles
   h1 {

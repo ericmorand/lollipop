@@ -1,14 +1,23 @@
-@import "../../../../global/font/src/index";
-@import "../../../../global/font/src/mixins";
-@import "../../../../global/breakpoint/src/index";
-@import "../../../../global/breakpoint/src/variables";
-@import "../../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/modals";
-@import "../../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+@import "../../../global/index";
+@import "../../../global/font/src/index";
+@import "../../../global/font/src/mixins";
+@import "../../../global/breakpoint/src/index";
+@import "../../../global/breakpoint/src/variables";
+@import "../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "../../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
 
-.popin-lang {
-  position: absolute;
+.wide-flash-sale--modal {
+  @include SecondaryFont;
+  display: none;
+  overflow: hidden;
+  position: fixed;
   top: 40px;
-  overflow: initial;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
 
   .modal-dialog {
     width: 75%;
@@ -19,20 +28,7 @@
     overflow: hidden;
   }
 
-  .modal {
-    display: none;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1050;
-    -webkit-overflow-scrolling: touch;
-    outline: 0;
-  }
-
-  .modal.fade .modal-dialog {
+  &.fade .modal-dialog {
     -webkit-transform: translate(0, -25%);
     -ms-transform: translate(0, -25%);
     -o-transform: translate(0, -25%);
@@ -42,7 +38,7 @@
     transition: transform 0.3s ease-out;
   }
 
-  .modal.in .modal-dialog {
+  &.in .modal-dialog {
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
     -o-transform: translate(0, 0);
@@ -93,7 +89,7 @@
       text-align: right;
       float: right;
       border: 0;
-      background: transparent url("./assets/images/close-popin.png") no-repeat center;
+      background: transparent url("./assets/images/close.png") no-repeat center;
       width: 25px;
       height: 25px;
       margin-bottom: 10px;
@@ -146,14 +142,9 @@
       width: 600px;
       margin: 30px auto;
     }
+
     .modal-sm {
       width: 300px;
-    }
-  }
-
-  @media (min-width: 992px) {
-    .modal-lg {
-      width: 900px;
     }
   }
 
@@ -164,56 +155,6 @@
 
       @include breakpoint($screen-sm-min) {
         padding: 60px 40px;
-      }
-
-      h2 {
-        color: black;
-        margin: 0 auto;
-        line-height: 1em;
-      }
-
-      hr {
-        width: 300px;
-        border-top: 1px solid black;
-        margin: 30px auto;
-      }
-
-      label {
-        @include SecondaryFont;
-        font-size: 1.6em;
-        color: black;
-        display: block;
-
-        &.country {
-          margin-top: 60px;
-        }
-      }
-
-      select {
-        @include SecondaryFont;
-        display: block;
-        height: 60px;
-        line-height: 60px;
-        border: 1px solid black;
-        width: 100%;
-        margin: 20px auto 30px;
-        padding: 0 10px;
-        font-size: 1.6em;
-      }
-
-      p {
-        @include SecondaryFont;
-        font-size: 1.4em;
-        color: black;
-      }
-
-      p.currency {
-        font-size: 1.6em;
-        margin-bottom: 60px;
-
-        span {
-          text-transform: uppercase;
-        }
       }
     }
   }
@@ -227,15 +168,6 @@
     .modal-content {
       .modal-body {
         padding: 40px 20px;
-        h2 {
-          font-size: 1.6em;
-        }
-        hr {
-          width: 90%;
-        }
-        select {
-          min-width: 90%;
-        }
       }
     }
   }

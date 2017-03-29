@@ -99,6 +99,7 @@
       // col-xs-12 col-md-6
       @include make-xs-column(24);
       @include make-md-column(7);
+      cursor: pointer;
 
       img {
         width: 100% !important;
@@ -336,6 +337,58 @@
 
     > img {
       max-width: 100%;
+    }
+  }
+
+  .wide-flash-sale--modal {
+    &.pdf-preview {
+      $pdfPreviewModalHeaderHeight: 5em;
+
+      height: 80%;
+
+      .modal-dialog,
+      .modal-content {
+        height: 100%;
+      }
+
+      .modal-dialog {
+        margin: 0 auto;
+      }
+
+      .modal-content {
+        padding: 0;
+      }
+
+      .modal-header {
+        height: $pdfPreviewModalHeaderHeight;
+        padding: 0 10px;
+        border-bottom: none;
+
+        .close {
+          margin-top: 0;
+        }
+      }
+
+      .modal-body {
+        position: absolute;
+        top: $pdfPreviewModalHeaderHeight;
+        bottom: 0;
+        left: 10px;
+        right: 10px;
+        padding: 0;
+
+        iframe {
+          height: 100%;
+          width: 100%;
+          border: none;
+        }
+      }
+
+      @include breakpoint($screen-sm-min) {
+        .modal-dialog {
+          width: 80%;
+        }
+      }
     }
   }
 }

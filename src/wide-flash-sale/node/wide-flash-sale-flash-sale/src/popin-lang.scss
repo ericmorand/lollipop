@@ -1,0 +1,73 @@
+@import "../../../modal/src/index";
+
+.popin-lang {
+  .modal-content {
+    .modal-body {
+      h2 {
+        color: black;
+        margin: 0 auto;
+        line-height: 1em;
+      }
+
+      hr {
+        width: 300px;
+        border-top: 1px solid black;
+        margin: 30px auto;
+      }
+
+      label {
+        @include SecondaryFont;
+        font-size: 1.6em;
+        color: black;
+        display: block;
+
+        &.country {
+          margin-top: 60px;
+        }
+      }
+
+      select {
+        @include SecondaryFont;
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        border: 1px solid black;
+        width: 100%;
+        margin: 20px auto 30px;
+        padding: 0 10px;
+        font-size: 1.6em;
+      }
+
+      p {
+        @include SecondaryFont;
+        font-size: 1.4em;
+        color: black;
+      }
+
+      p.currency {
+        font-size: 1.6em;
+        margin-bottom: 60px;
+
+        span {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  @include breakpoint($screen-sm-min) {
+    .modal-content {
+      .modal-body {
+        h2 {
+          font-size: 1.6em;
+        }
+        hr {
+          width: 90%;
+        }
+        select {
+          min-width: 90%;
+        }
+      }
+    }
+  }
+}
