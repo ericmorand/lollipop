@@ -11,6 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
       disable: window.innerWidth < 1024
     });
   }
+
+  global.jQuery = require('jquery');
+
+  require('parallax-js/source/jquery.parallax');
+
+  let scene = jQuery('#scene').parallax({
+    frictionX:0.6,
+    frictionY:0.6,
+    scalarX: 11,
+    scalarY: 15
+  });
 }, false);
 
 module.exports = {};

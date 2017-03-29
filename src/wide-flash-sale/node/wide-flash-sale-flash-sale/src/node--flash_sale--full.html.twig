@@ -18,6 +18,26 @@
                  style="background-image: url('{{ file_url(node.field_flash_sale_background.entity.uri.value) }}');">
             <div>
                 <div class="slider-watch-events">
+                    {% if node.field_flash_sale_header_back_l %}
+                        <div id="scene" class="slider-scene">
+                            <div class="layer slider-background-cloud left" data-depth="0.15">
+                                <img src="{{ file_url(node.field_flash_sale_header_back_l.entity.uri.value) }}"
+                                     alt="background cloud">
+                            </div>
+                            <div class="layer slider-background-cloud top-right" data-depth="0.07">
+                                <img src="{{ file_url(node.field_flash_sale_header_back_tr.entity.uri.value) }}"
+                                     alt="background cloud">
+                            </div>
+                            <div class="layer slider-background-cloud right" data-depth="0.12">
+                                <img src="{{ file_url(node.field_flash_sale_header_back_r.entity.uri.value) }}"
+                                     alt="background cloud">
+                            </div>
+                            <div class="layer slider-background-cloud center" data-depth="0.22">
+                                <img src="{{ file_url(node.field_flash_sale_header_back_c.entity.uri.value) }}"
+                                     alt="background cloud">
+                            </div>
+                        </div>
+                    {% endif %}
                     <div class="slider-watch-events-title">
                         <h1>{{ label }}</h1>
                     </div>
@@ -25,7 +45,8 @@
                         {{ content.field_flash_sale_subtitle }}
                         <span class="slider-watch-details">{{ content.field_flash_sale_description }}</span>
                     </div>
-                    <a class="slider-watch-image" href="{{ file_url(node.field_flash_sale_preview.entity.fileuri) }}" target="_blank">
+                    <a class="slider-watch-image" href="{{ file_url(node.field_flash_sale_preview.entity.fileuri) }}"
+                       target="_blank">
                         <div>
                             <div class="bg">
                                 <div class="clock">

@@ -80,6 +80,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    position: relative;
 
     > div[class*='col-'] {
       display: flex;
