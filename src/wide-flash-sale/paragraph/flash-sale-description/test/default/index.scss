@@ -1,7 +1,7 @@
 @import "../../src/index";
 
 .wide-flash-sale--paragraph--flash-sale-description--demo {
-  padding: 20px;
+  padding: 20px 0;
 
   > div {
     @include container-fixed();
@@ -12,6 +12,18 @@
         margin-bottom: 40px;
         border-bottom: solid 3px #ccc;
       }
+    }
+  }
+
+  .about-watch-img {
+    background-color: #B24109;
+  }
+
+  .about-watch-txt {
+    background-color: #187ec0;
+
+    p {
+      background-color: #736359;
     }
   }
 }
