@@ -1,84 +1,111 @@
 'use strict';
 
+const cluster = require('cluster');
+// const numCPUs = require('os').cpus().length;
+
 const log = require('log-util');
 const merge = require('merge');
+const path = require('path');
 
+const Stromboli = require('stromboli');
 const ComponentsBuilder = require('./lib/components-builder');
 const StyleguideBuilder = require('./lib/styleguide-builder');
+const BrowserSync = require('browser-sync');
 
-let demoBuilderConfig = require('./config/demo');
+const demoBuilderConfig = require('./config/demo');
 
-class Builder extends ComponentsBuilder {
-  start(config) {
-    let that = this;
-    let pkg = require('./package.json');
-    let length = Math.max(pkg.description.length, pkg.name.length);
+class MasterBuilder extends ComponentsBuilder {
 
-    log.info(('=').repeat(length));
-    log.info(pkg.name);
-    log.info(pkg.version);
-    log.info(pkg.description);
-    log.info(('=').repeat(length));
+}
 
-    that.config = config;
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-    return super.start(config).then(
-      function (components) {
-        // browser-sync
-        return new Promise(function (fulfill, reject) {
-          let processComponentAtIndex = function (index) {
-            let component = components[index];
-            let browserSync = require('browser-sync').create(component.name);
-            let browserSyncConfig = merge({}, that.config.browserSync);
+  let masterBuilder = new MasterBuilder();
 
-            browserSyncConfig.server = browserSyncConfig.server + '/' + component.name;
+  masterBuilder.start(demoBuilderConfig).then(
+    function (result) {
+      console.log(result);
 
-            browserSync.init(browserSyncConfig, function (err, bs) {
-              component.bs = browserSync;
-              component.url = '/html';
-              component.port = bs.options.get('port');
+      components.forEach(function (component) {
+        cluster.fork({
+          component: JSON.stringify(component)
+        });
+      });
+    }
+  );
 
-              index++;
+  masterBuilder.pluginRenderComponentDidEnd = function (worker, plugin, component, binaries, dependencies) {
+    let self = this;
 
-              if (index < components.length) {
-                processComponentAtIndex(index);
-              }
-              else {
-                fulfill(components);
-              }
-            });
-          };
+    // watch dependencies
+    let watcher = null;
 
-          processComponentAtIndex(0);
-        }).then(
-          function (components) {
-            // styleguide build
-            let styleguideBuilder = new StyleguideBuilder();
-            let styleguideBuilderConfig = require('./config/styleguide');
-            let componentsData = components.map(function (component) {
-              return {
-                name: component.name,
-                url: component.url,
-                port: component.port
-              }
-            });
+    if (!self.componentsWatchers.has(component.name)) {
+      self.componentsWatchers.set(component.name, new Map());
+    }
 
-            styleguideBuilderConfig.plugins.index.config.data = {
-              title: pkg.description,
-              components: componentsData
-            };
+    let componentWatchers = self.componentsWatchers.get(component.name);
 
-            return styleguideBuilder.start(styleguideBuilderConfig);
-          }
-        );
-      },
-      function (err) {
-        console.log(err);
+    self.info('WATCHER WILL WATCH', dependencies, 'USING PLUGIN', plugin.name);
+
+    watcher = self.getWatcher(dependencies, function () {
+      self.info('WATCHER FOR COMPONENT', component.name, 'AND PLUGIN', plugin.name, 'WILL BE CLOSED');
+
+      this.close();
+
+      worker.send({
+        type: 'renderComponent',
+        plugin: plugin.name
+      })
+    });
+
+    componentWatchers.set(plugin.name, watcher);
+
+    // reload Browsersync
+    let bs = BrowserSync.get(component.name);
+
+    if (bs) {
+      binaries.forEach(function (binary) {
+        if (path.extname(binary) !== '.map') {
+          bs.reload(binary);
+        }
+      });
+    }
+  };
+
+  cluster.on('message', function (worker, message, handle) {
+    if (message.type === 'pluginRenderComponent') {
+      masterBuilder.pluginRenderComponentDidEnd(worker, message.plugin, message.component, message.binaries, message.dependencies);
+    }
+  });
+
+  cluster.on('exit', function (worker, code, signal) {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+  let component = JSON.parse(process.env.component);
+
+  console.log(`Worker ${process.pid} started ${component.name}`);
+
+  let workerBuilder = new ComponentsBuilder();
+  let pluginRenderComponent = workerBuilder.pluginRenderComponent;
+
+  workerBuilder.pluginRenderComponent = function (plugin, component) {
+    return pluginRenderComponent.call(workerBuilder, plugin, component).then(
+      function (result) {
+        process.send({
+          type: 'pluginRenderComponent',
+          component: {
+            name: result.component.name
+          },
+          plugin: {
+            name: plugin.name
+          },
+          binaries: result.binaries,
+          dependencies: result.dependencies
+        });
       }
     );
   };
 }
-
-let stromboli = new Builder();
-
-stromboli.start(demoBuilderConfig);

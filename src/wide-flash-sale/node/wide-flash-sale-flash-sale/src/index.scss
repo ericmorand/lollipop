@@ -9,9 +9,11 @@
 @import "../../../../global/font/src/mixins";
 @import "../../../modal/src/index.scss";
 
-.wide-flash-sale--node--wide-flash-sale-flash-sale {
-  @import "./popin-lang";
 
+@import "./header";
+@import "./popin-lang";
+
+.wide-flash-sale--node--wide-flash-sale-flash-sale {
   padding-top: 0;
 
   // Global styles
@@ -92,8 +94,6 @@
       transition: border 450ms ease-out;
     }
   }
-
-  @import "./header";
 
   .closeup-watch {
     padding-top: 0;
